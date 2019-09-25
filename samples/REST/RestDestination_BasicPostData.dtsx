@@ -1,0 +1,604 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/6/2018 2:53:07 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="FL-VM-QA-WS2016"
+  DTS:CreatorName="PWCORP\cphillips"
+  DTS:DTSID="{E76A127A-2B46-44B2-8D2D-0EBCB5CA5C22}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1100.123"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="RestDestination_BasicPostData"
+  DTS:PackageType="5"
+  DTS:VersionBuild="10"
+  DTS:VersionGUID="{47EC3BB0-3BAE-4890-8B9D-C220DB9524B5}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ddo-test.database.windows.net.QA.TFTest]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{9B90EABD-E65A-4F39-BFBA-94A1899BA6F1}"
+      DTS:ObjectName="ddo-test.database.windows.net.QA.TFTest">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=ddo-test.database.windows.net;User ID=TFTest;Initial Catalog=TaskFactoryQA;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAiqHIgf4PWkqXxAdRkDoZiQAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAACH44WGn7LawwIiy5HfXPC6AAAAAASAAACgAAAAEAAAAKOoeLn5UCpkVXH8mYJ823coAAAACl8Ck2Z3OUrps3fYdMYe40JZrrMQCmKwzrcthadLfXT4XLoYQWXd7BQAAAD8qhBn+6kLRxE6Yp6ZbLUYFR0pkw</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.TaskFactoryQA_Clone]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{D51F9229-628D-4257-835D-EE3B43F20304}"
+      DTS:ObjectName="LocalHost.TaskFactoryQA_Clone">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=.;Initial Catalog=TaskFactoryQA_Clone;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[TF Rest Connection Manager]"
+      DTS:CreationName="RestConnectionManagerTF"
+      DTS:DTSID="{4BE69E7F-36D2-42DC-B85A-CE8A8623EF5B}"
+      DTS:ObjectName="TF Rest Connection Manager">
+      <DTS:ObjectData>
+        <RestConnectionManager
+          ConnectionString="RestAuthenticationUrl=;SkipAuthentication=False;SuccessfulAuthenticationToken=;UseBase64AuthenticationHeader=False;UserName=;ApiReturnFormat=1;BaseEndpointUrl=;CertificatePath=;CertificateStoreLocationType=0;CertificateStoreName=0;CertificateThumbprint=;ConfigurationFilePath=;ProxyAuthorizationScheme=0;ProxyHost=;ProxyPort=0;ProxyUserName=;SecurityProtocol=0;UseClientCertificate=False;IgnoreSslCertificateVerification=False;AutoFollowRedirects=False;"
+          Headers="﻿&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&lt;ArrayOfHeader xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; /&gt;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{29624AC6-C30E-4D20-917D-91CD977DC0F2}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="Count">
+      <DTS:VariableValue
+        DTS:DataType="3">1</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{852DA837-B8F8-417B-9284-4F82A1C07D45}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Parameter">
+      <DTS:VariableValue
+        DTS:DataType="8">This is a parameter</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{81FF9823-ADBF-4DAF-B2C4-1809D4D10DB1}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="TestVariable">
+      <DTS:VariableValue
+        DTS:DataType="8">Variable test value</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Data Flow Task"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{2BADE704-D939-4B6F-BCCD-D40E37478434}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Flow Task">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Data Flow Task\TF Advanced Derived Column Transform"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="TF Advanced Derived Column Transform;https://www.sentryone.com"
+              description="Advanced Derived Column Transform"
+              name="TF Advanced Derived Column Transform"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  name="VariableColumns">﻿&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;ArrayOfExpressionColumn xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" /&gt;</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">PW.TaskFactory.AdvancedDerivedColumnTransform</property>
+                <property
+                  dataType="System.Decimal"
+                  name="ErrorsToSkip">0</property>
+                <property
+                  dataType="System.Boolean"
+                  name="LegacyMode">false</property>
+                <property
+                  dataType="System.Decimal"
+                  name="MaxWarnings">10</property>
+                <property
+                  dataType="System.Int32"
+                  name="ErrorOption">0</property>
+                <property
+                  dataType="System.Int32"
+                  name="TurncationOption">0</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\TF Advanced Derived Column Transform.Inputs[TF Derived Column Input]"
+                  name="TF Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\TF Advanced Derived Column Transform.Inputs[TF Derived Column Input].Columns[ID]"
+                      cachedDataType="i4"
+                      cachedName="ID"
+                      lineageId="Package\Data Flow Task\TF Placeholder Source.Outputs[Output1].Columns[ID]"
+                      name="ID"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="FriendlyExpression">1</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          name="Expression">1</property>
+                        <property
+                          dataType="System.String"
+                          name="LastError"></property>
+                        <property
+                          dataType="System.Double"
+                          name="EvaluationOrder">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\TF Advanced Derived Column Transform.Inputs[TF Derived Column Input].Columns[Name]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Name"
+                      lineageId="Package\Data Flow Task\TF Placeholder Source.Outputs[Output1].Columns[Name]"
+                      name="Name"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="FriendlyExpression">'Test Result 1'</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          name="Expression">"Test Result 1"</property>
+                        <property
+                          dataType="System.String"
+                          name="LastError"></property>
+                        <property
+                          dataType="System.Double"
+                          name="EvaluationOrder">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\TF Advanced Derived Column Transform.Inputs[TF Derived Column Input].Columns[StartTime]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="StartTime"
+                      lineageId="Package\Data Flow Task\TF Placeholder Source.Outputs[Output1].Columns[StartTime]"
+                      name="StartTime"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="FriendlyExpression">'2017-01-01 00:00:00'</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          name="Expression">"2017-01-01 00:00:00"</property>
+                        <property
+                          dataType="System.String"
+                          name="LastError"></property>
+                        <property
+                          dataType="System.Double"
+                          name="EvaluationOrder">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\TF Advanced Derived Column Transform.Inputs[TF Derived Column Input].Columns[EndTime]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="EndTime"
+                      lineageId="Package\Data Flow Task\TF Placeholder Source.Outputs[Output1].Columns[EndTime]"
+                      name="EndTime"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="FriendlyExpression">GETDATE()</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          name="Expression">GETDATE()</property>
+                        <property
+                          dataType="System.String"
+                          name="LastError"></property>
+                        <property
+                          dataType="System.Double"
+                          name="EvaluationOrder">3</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\TF Advanced Derived Column Transform.Inputs[TF Derived Column Input].Columns[ModifiedDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="ModifiedDate"
+                      lineageId="Package\Data Flow Task\TF Placeholder Source.Outputs[Output1].Columns[ModifiedDate]"
+                      name="ModifiedDate"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="FriendlyExpression">GETDATE()</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          name="Expression">GETDATE()</property>
+                        <property
+                          dataType="System.String"
+                          name="LastError"></property>
+                        <property
+                          dataType="System.Double"
+                          name="EvaluationOrder">4</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\TF Advanced Derived Column Transform.Outputs[TF Derived Column Output]"
+                  errorOrTruncationOperation="Error"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="TF Derived Column Output"
+                  synchronousInputId="Package\Data Flow Task\TF Advanced Derived Column Transform.Inputs[TF Derived Column Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\TF Advanced Derived Column Transform.Outputs[Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Error Output"
+                  synchronousInputId="Package\Data Flow Task\TF Advanced Derived Column Transform.Inputs[TF Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF Advanced Derived Column Transform.Outputs[Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\TF Advanced Derived Column Transform.Outputs[Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF Advanced Derived Column Transform.Outputs[Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\TF Advanced Derived Column Transform.Outputs[Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\TF Placeholder Source"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="TF Placeholder Source;SentryOne; Task Factory © 2019 SQL Sentry, LLC; http://www.sentryone.com;support@sentryone.com"
+              description="Acts as placeholder source to generate random or manually input data"
+              name="TF Placeholder Source"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  expressionType="Notify"
+                  name="TotalRows">1</property>
+                <property
+                  dataType="System.Boolean"
+                  expressionType="Notify"
+                  name="UseCustomValues">false</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">PW.TaskFactory.PlaceholderSource</property>
+              </properties>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\TF Placeholder Source.Outputs[Output1]"
+                  name="Output1">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF Placeholder Source.Outputs[Output1].Columns[ID]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\TF Placeholder Source.Outputs[Output1].Columns[ID]"
+                      name="ID" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF Placeholder Source.Outputs[Output1].Columns[Name]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\TF Placeholder Source.Outputs[Output1].Columns[Name]"
+                      name="Name" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF Placeholder Source.Outputs[Output1].Columns[StartTime]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Data Flow Task\TF Placeholder Source.Outputs[Output1].Columns[StartTime]"
+                      name="StartTime" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF Placeholder Source.Outputs[Output1].Columns[EndTime]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Data Flow Task\TF Placeholder Source.Outputs[Output1].Columns[EndTime]"
+                      name="EndTime" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF Placeholder Source.Outputs[Output1].Columns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Data Flow Task\TF Placeholder Source.Outputs[Output1].Columns[ModifiedDate]"
+                      name="ModifiedDate" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\TF REST Destination"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="TF REST Destination;Pragmatic Works, Inc; Task Factory (c) 2009 - 2017 Pragmatic Works, Inc; http://www.pragmaticworks.com;support@pragmaticworks.com"
+              description="TF REST Destination"
+              name="TF REST Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  name="DebugMode">false</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="The endpoint url"
+                  expressionType="Notify"
+                  name="End Point">http://httpbin.org/post?Name={{#{Package\Data Flow Task\TF Placeholder Source.Outputs[Output1].Columns[Name]}|Name}}Id={{#{Package\Data Flow Task\TF Placeholder Source.Outputs[Output1].Columns[ID]}|ID}}Count=&lt;@User::Count&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="The body of the request"
+                  expressionType="Notify"
+                  name="Post Body">{{#{Package\Data Flow Task\TF Placeholder Source.Outputs[Output1].Columns[ID]}|ID}} - {{#{Package\Data Flow Task\TF Placeholder Source.Outputs[Output1].Columns[Name]}|Name}} - &amp;lt;@User::Parameter&amp;gt; - &amp;lt;@User::TestVariable&amp;gt;</property>
+                <property
+                  dataType="System.String"
+                  description="The content-type header value"
+                  expressionType="Notify"
+                  name="Content Type"></property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds to wait before stopping execution of the REST execution"
+                  expressionType="Notify"
+                  name="Execution Timeout">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of times to retry before failing the component"
+                  expressionType="Notify"
+                  name="Number Of Retries">0</property>
+                <property
+                  dataType="System.String"
+                  description="Pipe delimited valid status codes (e.g. 200|405)"
+                  expressionType="Notify"
+                  name="Valid Status Codes">200</property>
+                <property
+                  dataType="System.String"
+                  description="The variable to track the cookies container."
+                  expressionType="Notify"
+                  name="Cookies Container Variable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="The Http Method used to send the content to the REST endpoint"
+                  expressionType="Notify"
+                  name="Http Method"
+                  typeConverter="PragmaticWorks.TaskFactory.ConnectionManagers.Enums+WebRequestMethod">1</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Headers to include in the REST destination execution"
+                  expressionType="Notify"
+                  name="Headers">﻿&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;ArrayOfHeader xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;&lt;Header&gt;&lt;Name&gt;Content-Type&lt;/Name&gt;&lt;Value&gt;application/x-www-form-urlencoded&lt;/Value&gt;&lt;/Header&gt;&lt;Header&gt;&lt;Name&gt;TestHeader&lt;/Name&gt;&lt;Value&gt;TestValue&lt;/Value&gt;&lt;/Header&gt;&lt;Header&gt;&lt;Name&gt;TestVariable&lt;/Name&gt;&lt;Value&gt;{{#{Package\Data Flow Task\TF Placeholder Source.Outputs[Output1].Columns[ID]}|ID}} &amp;lt;@User::TestVariable&amp;gt; {{#{Package\Data Flow Task\TF Placeholder Source.Outputs[Output1].Columns[Name]}|Name}}&lt;/Value&gt;&lt;/Header&gt;&lt;/ArrayOfHeader&gt;</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">PragmaticWorks.TaskFactory.RestDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\TF REST Destination.Connections[RestConnection]"
+                  connectionManagerID="Package.ConnectionManagers[TF Rest Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[TF Rest Connection Manager]"
+                  description="REST Connection"
+                  name="RestConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\TF REST Destination.Inputs[REST Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="REST Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\TF REST Destination.Inputs[REST Destination Input].Columns[Name]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Name"
+                      lineageId="Package\Data Flow Task\TF Placeholder Source.Outputs[Output1].Columns[Name]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\TF REST Destination.Inputs[REST Destination Input].Columns[ID]"
+                      cachedDataType="i4"
+                      cachedName="ID"
+                      lineageId="Package\Data Flow Task\TF Placeholder Source.Outputs[Output1].Columns[ID]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\TF REST Destination.Outputs[REST Destination Response Output]"
+                  exclusionGroup="1"
+                  name="REST Destination Response Output"
+                  synchronousInputId="Package\Data Flow Task\TF REST Destination.Inputs[REST Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF REST Destination.Outputs[REST Destination Response Output].Columns[ExecutionResults]"
+                      dataType="nText"
+                      lineageId="Package\Data Flow Task\TF REST Destination.Outputs[REST Destination Response Output].Columns[ExecutionResults]"
+                      name="ExecutionResults" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF REST Destination.Outputs[REST Destination Response Output].Columns[Headers]"
+                      dataType="nText"
+                      lineageId="Package\Data Flow Task\TF REST Destination.Outputs[REST Destination Response Output].Columns[Headers]"
+                      name="Headers" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\TF REST Destination.Outputs[REST Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="REST Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task\TF REST Destination.Inputs[REST Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF REST Destination.Outputs[REST Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\TF REST Destination.Outputs[REST Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF REST Destination.Outputs[REST Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\TF REST Destination.Outputs[REST Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF REST Destination.Outputs[REST Destination Error Output].Columns[Http Error Code]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\TF REST Destination.Outputs[REST Destination Error Output].Columns[Http Error Code]"
+                      name="Http Error Code" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF REST Destination.Outputs[REST Destination Error Output].Columns[Http Error Code Description]"
+                      dataType="wstr"
+                      length="1024"
+                      lineageId="Package\Data Flow Task\TF REST Destination.Outputs[REST Destination Error Output].Columns[Http Error Code Description]"
+                      name="Http Error Code Description" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF REST Destination.Outputs[REST Destination Error Output].Columns[Error Response]"
+                      dataType="nText"
+                      lineageId="Package\Data Flow Task\TF REST Destination.Outputs[REST Destination Error Output].Columns[Error Response]"
+                      name="Error Response" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Data Flow Task.Paths[Output1]"
+              endId="Package\Data Flow Task\TF Advanced Derived Column Transform.Inputs[TF Derived Column Input]"
+              name="Output1"
+              startId="Package\Data Flow Task\TF Placeholder Source.Outputs[Output1]" />
+            <path
+              refId="Package\Data Flow Task.Paths[TF Derived Column Output]"
+              endId="Package\Data Flow Task\TF REST Destination.Inputs[REST Destination Input]"
+              name="TF Derived Column Output"
+              startId="Package\Data Flow Task\TF Advanced Derived Column Transform.Outputs[TF Derived Column Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="151,42"
+          Id="Package\Data Flow Task"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="191,42"
+          Id="Package\Data Flow Task\TF Placeholder Source"
+          TopLeft="91.5,17.5" />
+        <NodeLayout
+          Size="279,42"
+          Id="Package\Data Flow Task\TF Advanced Derived Column Transform"
+          TopLeft="54.5,111.5" />
+        <NodeLayout
+          Size="175,42"
+          Id="Package\Data Flow Task\TF REST Destination"
+          TopLeft="105.5,225.5" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[TF Derived Column Output]"
+          TopLeft="193.5,153.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,72"
+              Start="0,0"
+              End="0,64.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,64.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Output1]"
+          TopLeft="190.5,59.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,52"
+              Start="0,0"
+              End="0,44.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

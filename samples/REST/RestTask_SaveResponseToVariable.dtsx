@@ -1,0 +1,98 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/18/2019 5:11:15 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="FL-VM-QA-WS2016"
+  DTS:CreatorName="PWCORP\cphillips"
+  DTS:DTSID="{176F9D0F-3868-45A3-9353-D400CBA2FB3B}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1100.123"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="RestTask_SaveResponseToVariable"
+  DTS:PackageType="5"
+  DTS:VersionBuild="6"
+  DTS:VersionGUID="{C6505A83-B7B5-4259-86F9-A44FABCF434B}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[TF Rest Connection Manager]"
+      DTS:CreationName="RestConnectionManagerTF"
+      DTS:DTSID="{C52E2E90-977D-49C3-9DDE-FB01FB65C979}"
+      DTS:ObjectName="TF Rest Connection Manager">
+      <DTS:ObjectData>
+        <RestConnectionManager
+          ConnectionString="RestAuthenticationUrl=;SkipAuthentication=False;SuccessfulAuthenticationToken=;UseBase64AuthenticationHeader=False;UserName=;ApiReturnFormat=1;BaseEndpointUrl=;CertificatePath=;CertificateStoreLocationType=0;CertificateStoreName=0;CertificateThumbprint=;ConfigurationFilePath=;ProxyAuthorizationScheme=0;ProxyHost=;ProxyPort=0;ProxyUserName=;SecurityProtocol=0;UseClientCertificate=False;IgnoreSslCertificateVerification=False;AutoFollowRedirects=True;"
+          Headers="﻿&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&lt;ArrayOfHeader xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; /&gt;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{58A16782-2ACF-47DA-9BA2-A144577A664A}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="XmlResponseCode">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\TF Rest Task"
+      DTS:CreationName="PragmaticWorks.TaskFactory.Tasks.Rest"
+      DTS:Description="TF Rest Task"
+      DTS:DTSID="{153E45BA-2CE5-433A-AEA4-2D883F995D62}"
+      DTS:ExecutableType="PragmaticWorks.TaskFactory.Tasks.Rest"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="TF Rest Task"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <RestTask
+          ConnectionManagerId="{C52E2E90-977D-49C3-9DDE-FB01FB65C979}"
+          ContentType=""
+          CookieContainerVariable=""
+          DebugModeOn="False"
+          EndpointUri="http://httpbin.org/xml"
+          ExecutionTimeout="0"
+          FilterResponse="False"
+          Headers="﻿&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&lt;ArrayOfRestRequestHeader xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; /&gt;"
+          HttpMethod="Get"
+          NumberOfRetries="0"
+          ResponseContentFilter=""
+          ResponseFormat="Json"
+          ResponseStatusCodeVariable="User::XmlResponseCode"
+          SaveContentAsBinary="False"
+          SaveResponse="SaveToFile"
+          SaveResponseLocation="C:\Windows\Temp\TaskFactoryDemo\REST\RestTaskResponse.xml"
+          ShouldSaveResponseStatusCode="True"
+          StopPackageOnFailure="False"
+          ValidStatusCodes="200"
+          SerializedNamespaces="﻿&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&lt;ArrayOfXmlNamespace xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; /&gt;" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="145,42"
+          Id="Package\TF Rest Task"
+          TopLeft="284.5,98.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

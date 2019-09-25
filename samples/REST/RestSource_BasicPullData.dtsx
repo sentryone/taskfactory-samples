@@ -1,0 +1,410 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/17/2019 3:02:04 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="FL-VM-QA-WS2016"
+  DTS:CreatorName="PWCORP\cphillips"
+  DTS:DTSID="{5B7B826E-1803-47E2-9D04-AB1D37578CDF}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1100.123"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="RestSource_BasicPullData"
+  DTS:PackageType="5"
+  DTS:VersionBuild="4"
+  DTS:VersionGUID="{B3FD5CF2-82C9-4790-8085-ACB618E3A8C6}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[TF Rest Connection Manager]"
+      DTS:CreationName="RestConnectionManagerTF"
+      DTS:DTSID="{CD7B33B7-562C-490C-B690-FE45FE4850C3}"
+      DTS:ObjectName="TF Rest Connection Manager">
+      <DTS:ObjectData>
+        <RestConnectionManager
+          ConnectionString="RestAuthenticationUrl=;SkipAuthentication=False;SuccessfulAuthenticationToken=;UseBase64AuthenticationHeader=False;UserName=;ApiReturnFormat=1;BaseEndpointUrl=;CertificatePath=;CertificateStoreLocationType=0;CertificateStoreName=0;CertificateThumbprint=;ConfigurationFilePath=;ProxyAuthorizationScheme=0;ProxyHost=;ProxyPort=0;ProxyUserName=;SecurityProtocol=0;UseClientCertificate=False;IgnoreSslCertificateVerification=False;AutoFollowRedirects=True;"
+          Headers="﻿&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&lt;ArrayOfHeader xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; /&gt;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Data Flow Task"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{F18C28F1-95CC-4D33-B637-2B76755311D0}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Flow Task">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Data Flow Task\TF Rest Source"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="TF Rest Source;SQL Sentry, LLC; Task Factory (c) 2009 - 2019; https://www.sentryone.com;support@sentryone.com"
+              description="Retrieve data from Rest API's"
+              name="TF Rest Source"
+              usesDispositions="true"
+              validateExternalMetadata="False"
+              version="11">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  name="DebugMode">false</property>
+                <property
+                  dataType="System.String"
+                  description="The end point used to retrieve data from the Rest API"
+                  expressionType="Notify"
+                  name="End Point">https://jsonplaceholder.typicode.com/posts</property>
+                <property
+                  dataType="System.String"
+                  description="The root json path used as a starting point when outputting data"
+                  expressionType="Notify"
+                  name="Root Token Path"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable mapping step to execute after a successful authentication"
+                  expressionType="Notify"
+                  name="Authentication Results Mapping Step">{"RestEndpointUrl":null,"VariableMappings":[]}</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Sets whether to show the advanced settings in the UI or not"
+                  expressionType="Notify"
+                  name="Show Advanced Settings In UI">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="The format (json or xml) in which the results from the rest call are returned."
+                  expressionType="Notify"
+                  name="Results Format">1</property>
+                <property
+                  dataType="System.String"
+                  description="The path to the token in the result set that defines the result set cursor value."
+                  expressionType="Notify"
+                  name="Result Set Cursor Token Path"></property>
+                <property
+                  dataType="System.String"
+                  description="The query string parameter used to defined the cursor value of a result set."
+                  expressionType="Notify"
+                  name="Cursor Query String Parameter"></property>
+                <property
+                  dataType="System.String"
+                  description="The value returned in the result set that defines the result set cursor is finished."
+                  expressionType="Notify"
+                  name="Result Set Cursor Finished Value"></property>
+                <property
+                  dataType="System.Int32"
+                  description="The http method to use when calling the rest endpoint."
+                  expressionType="Notify"
+                  name="Http Method"
+                  typeConverter="PragmaticWorks.TaskFactory.ConnectionManagers.Enums+WebRequestMethod">0</property>
+                <property
+                  dataType="System.String"
+                  description="The post data to be used when calling the rest endpoint."
+                  expressionType="Notify"
+                  name="Post Data"></property>
+                <property
+                  dataType="System.String"
+                  description="The content type of the post data."
+                  expressionType="Notify"
+                  name="Content Type">application/json</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Is the cursor token being used a URL?"
+                  expressionType="Notify"
+                  name="Is Cursor Url Based">false</property>
+                <property
+                  dataType="System.String"
+                  description="Headers to add to the rest api call"
+                  expressionType="Notify"
+                  name="Headers"></property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds to wait before terminating execution of a rest api call. 0 = no timeout."
+                  expressionType="Notify"
+                  name="Execution Timeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Xml Namespaces to use to parse column values"
+                  expressionType="Notify"
+                  name="Xml Namespaces">﻿&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;ArrayOfXmlNamespace xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" /&gt;</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds to wait between subsequent calls when using paging / cursor"
+                  expressionType="Notify"
+                  name="Round Trip Pause In Seconds">0</property>
+                <property
+                  dataType="System.String"
+                  description="Use this to define a path in the scenario where your endpoint sends back a valid response, but sends an error message instead of the proper response"
+                  expressionType="Notify"
+                  name="Error Response Path"></property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of retries before failing the component."
+                  expressionType="Notify"
+                  name="Number Of Retries">0</property>
+                <property
+                  dataType="System.String"
+                  description="The variable to track the cookies container."
+                  expressionType="Notify"
+                  name="Cookies Container Variable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="The mode in which pagination is performed."
+                  expressionType="Notify"
+                  name="Pagination Mode"
+                  typeConverter="PragmaticWorks.TaskFactory.Components.Sources.Rest+PaginationMode">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="The mode in which pagination is ended."
+                  expressionType="Notify"
+                  name="Pagination Last Page Detection Mode"
+                  typeConverter="PragmaticWorks.TaskFactory.Components.Sources.Rest+LastPageDetectionMode">3</property>
+                <property
+                  dataType="System.Int32"
+                  description="The http status that is returned when pagination has ended."
+                  expressionType="Notify"
+                  name="Pagination End Http Status Code">404</property>
+                <property
+                  dataType="System.String"
+                  description="The error message contained in value returned from the endpoint."
+                  expressionType="Notify"
+                  name="Pagination End Error Message"></property>
+                <property
+                  dataType="System.String"
+                  description="The template used to inject the pagination template into the postbody or url of the request."
+                  expressionType="Notify"
+                  name="Pagination Token Template"></property>
+                <property
+                  dataType="System.String"
+                  description="Extra settings for the specified unpacker"
+                  expressionType="Notify"
+                  name="Unpacker Settings">{"DateParseHandling":1,"DateTimeZoneHandling":3,"FloatParseHandling":0}</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">PragmaticWorks.TaskFactory.RestSource</property>
+                <property
+                  dataType="System.String"
+                  name="Pagination Start Page"></property>
+                <property
+                  dataType="System.Int32"
+                  name="Pagination Increment">1</property>
+                <property
+                  dataType="System.Int32"
+                  name="Pagination Max Page">0</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\TF Rest Source.Connections[RestConnection]"
+                  connectionManagerID="Package.ConnectionManagers[TF Rest Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[TF Rest Connection Manager]"
+                  description="Task Factory Rest Connection"
+                  name="RestConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\TF Rest Source.Outputs[Rest Source Output]"
+                  name="Rest Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF Rest Source.Outputs[Rest Source Output].Columns[UserID]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\TF Rest Source.Outputs[Rest Source Output].Columns[UserID]"
+                      name="UserID">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="Token Path">userId</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF Rest Source.Outputs[Rest Source Output].Columns[ID]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\TF Rest Source.Outputs[Rest Source Output].Columns[ID]"
+                      name="ID">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="Token Path">id</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF Rest Source.Outputs[Rest Source Output].Columns[Title]"
+                      dataType="wstr"
+                      length="250"
+                      lineageId="Package\Data Flow Task\TF Rest Source.Outputs[Rest Source Output].Columns[Title]"
+                      name="Title">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="Token Path">title</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF Rest Source.Outputs[Rest Source Output].Columns[Body]"
+                      dataType="wstr"
+                      length="250"
+                      lineageId="Package\Data Flow Task\TF Rest Source.Outputs[Rest Source Output].Columns[Body]"
+                      name="Body">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="Token Path">body</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\TF Rest Source.Outputs[Http Error Output]"
+                  name="Http Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF Rest Source.Outputs[Http Error Output].Columns[ErrorDescription]"
+                      dataType="wstr"
+                      length="1024"
+                      lineageId="Package\Data Flow Task\TF Rest Source.Outputs[Http Error Output].Columns[ErrorDescription]"
+                      name="ErrorDescription" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF Rest Source.Outputs[Http Error Output].Columns[Http Error Code]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\TF Rest Source.Outputs[Http Error Output].Columns[Http Error Code]"
+                      name="Http Error Code" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF Rest Source.Outputs[Http Error Output].Columns[Error Response]"
+                      dataType="nText"
+                      lineageId="Package\Data Flow Task\TF Rest Source.Outputs[Http Error Output].Columns[Error Response]"
+                      name="Error Response" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\TF Terminator Destination"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Terminator Destination;SentryOne; Task Factory © 2019 SQL Sentry, LLC; http://www.sentryone.com;support@sentryone.com"
+              description="The terminator destination is used to terminate a data flow path without any setup"
+              name="TF Terminator Destination"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Set this property to True if you want to save buffer data to text file"
+                  expressionType="Notify"
+                  name="EnableDataDump">false</property>
+                <property
+                  dataType="System.String"
+                  description="Output file path for data dump"
+                  expressionType="Notify"
+                  name="DumpFilePath"></property>
+                <property
+                  dataType="System.String"
+                  description="Output file column separator"
+                  expressionType="Notify"
+                  name="ColumnSeparator">,</property>
+                <property
+                  dataType="System.String"
+                  description="Output file row separator"
+                  expressionType="Notify"
+                  name="RowSeparator">\r\n</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Unicode character support"
+                  expressionType="Notify"
+                  name="SupportUnicode">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Output column names in the first row"
+                  expressionType="Notify"
+                  name="ColumnNamesInFirstRow">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">PW.TaskFactory.TerminatorDestination</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\TF Terminator Destination.Inputs[TerminatorInput]"
+                  hasSideEffects="true"
+                  name="TerminatorInput">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Data Flow Task.Paths[Rest Source Output]"
+              endId="Package\Data Flow Task\TF Terminator Destination.Inputs[TerminatorInput]"
+              name="Rest Source Output"
+              startId="Package\Data Flow Task\TF Rest Source.Outputs[Rest Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Data Flow Task"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="207,42"
+          Id="Package\Data Flow Task\TF Terminator Destination"
+          TopLeft="196.5,166.5" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Data Flow Task\TF Rest Source"
+          TopLeft="217.5,43.5" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Rest Source Output]"
+          TopLeft="297.75,85.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,81"
+              Start="0,0"
+              End="0,73.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,73.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-52.5100390625,28.75,105.020078125,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

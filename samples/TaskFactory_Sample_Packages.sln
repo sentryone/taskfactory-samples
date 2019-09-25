@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.779
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "UpsertDestination", "TaskFactory_Sample_Packages\UpsertDestination.dtproj", "{6C6150FB-48B2-4751-AA8A-37C33A250C65}"
+EndProject
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "CompressionTask", "CompressionTask\CompressionTask.dtproj", "{69A35806-E321-4C87-BDA1-444E2282EB50}"
+EndProject
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "DynamicsCRM", "DynamicsCRM\DynamicsCRM.dtproj", "{04611CCE-D1E4-408C-97FE-3F1288EE1A51}"
+EndProject
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "REST", "REST\REST.dtproj", "{01E9FEE6-CDD3-4C6D-8B04-D28C301F768A}"
+EndProject
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "SecureFTPTask", "SecureFTPTask\SecureFTPTask.dtproj", "{75C603C5-FB72-4E7E-90BF-D3488AC193CC}"
+EndProject
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "Salesforce", "Salesforce\Salesforce.dtproj", "{C789FE19-F0CF-4E59-A294-4598D5C6161D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6C6150FB-48B2-4751-AA8A-37C33A250C65}.Development|Default.ActiveCfg = Development
+		{6C6150FB-48B2-4751-AA8A-37C33A250C65}.Development|Default.Build.0 = Development
+		{69A35806-E321-4C87-BDA1-444E2282EB50}.Development|Default.ActiveCfg = Development
+		{69A35806-E321-4C87-BDA1-444E2282EB50}.Development|Default.Build.0 = Development
+		{04611CCE-D1E4-408C-97FE-3F1288EE1A51}.Development|Default.ActiveCfg = Development
+		{04611CCE-D1E4-408C-97FE-3F1288EE1A51}.Development|Default.Build.0 = Development
+		{01E9FEE6-CDD3-4C6D-8B04-D28C301F768A}.Development|Default.ActiveCfg = Development
+		{01E9FEE6-CDD3-4C6D-8B04-D28C301F768A}.Development|Default.Build.0 = Development
+		{75C603C5-FB72-4E7E-90BF-D3488AC193CC}.Development|Default.ActiveCfg = Development
+		{75C603C5-FB72-4E7E-90BF-D3488AC193CC}.Development|Default.Build.0 = Development
+		{C789FE19-F0CF-4E59-A294-4598D5C6161D}.Development|Default.ActiveCfg = Development
+		{C789FE19-F0CF-4E59-A294-4598D5C6161D}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {46E5D777-9F88-4C9F-B873-15D62148FA27}
+	EndGlobalSection
+EndGlobal

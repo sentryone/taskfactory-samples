@@ -1,0 +1,132 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/23/2019 11:51:33 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="FL-VM-QA-WS2016"
+  DTS:CreatorName="PWCORP\cphillips"
+  DTS:DTSID="{674141B4-0E96-43A3-B871-A7C8A061C967}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1100.123"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="1_SetupLocalDynamicsDemoDB"
+  DTS:PackageType="5"
+  DTS:VersionBuild="4"
+  DTS:VersionGUID="{6123DA90-9F2C-45C2-88BB-CD34673C477C}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.master]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{A8304061-E112-4933-9B94-CAD342324694}"
+      DTS:ObjectName="LocalHost.master">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=.;Initial Catalog=master;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.TaskFactoryDemo]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{16986244-FDFE-466E-AF0E-38B0CA4C4BDD}"
+      DTS:ObjectName="LocalHost.TaskFactoryDemo">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=.;Initial Catalog=TaskFactoryDemo;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\CREATE LOCAL DATABASE"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{019CE6D5-C2B8-48E4-B6D0-1D613072CEB5}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="CREATE LOCAL DATABASE"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{A8304061-E112-4933-9B94-CAD342324694}"
+          SQLTask:SqlStatementSource="IF NOT EXISTS(SELECT * FROM sys.databases WHERE name = 'TaskFactoryDemo')&#xA;   BEGIN&#xA;    CREATE DATABASE TaskFactoryDemo&#xA;   END" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\CREATE LOCAL TABLES"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:DelayValidation="True"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{DE78C216-DA12-4125-83FC-35C1D09BE5CC}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="CREATE LOCAL TABLES"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{16986244-FDFE-466E-AF0E-38B0CA4C4BDD}"
+          SQLTask:SqlStatementSource="USE [TaskFactoryDemo]&#xA;GO&#xA;&#xA;IF NOT EXISTS (SELECT * FROM sys.objects WHERE NAME=N'DynamicsAccountInsert')&#xA;&#xA;CREATE TABLE [dbo].[DynamicsAccountInsert](&#xA;&#x9;[ID] [int] NULL,&#xA;&#x9;[Name] [nvarchar](50) NULL,&#xA;&#x9;[Address1_line1] [nvarchar](50) NULL,&#xA;&#x9;[Address1_City] [nvarchar](50) NULL,&#xA;&#x9;[Address1_StateOrProvince] [nvarchar](2) NULL,&#xA;&#x9;[Address1_PostalCode] [nvarchar](5) NULL&#xA;) ON [PRIMARY]&#xA;GO&#xA;INSERT [dbo].[DynamicsAccountInsert] ([ID], [Name], [Address1_line1], [Address1_City], [Address1_StateOrProvince], [Address1_PostalCode]) VALUES (1, N'Task Factory Demo Account 1', N'1 Main St', N'Charlotte', N'NC', N'28217')&#xA;GO&#xA;INSERT [dbo].[DynamicsAccountInsert] ([ID], [Name], [Address1_line1], [Address1_City], [Address1_StateOrProvince], [Address1_PostalCode]) VALUES (2, N'Task Factory Demo Account 2', N'2 Main St', N'Charlotte', N'NC', N'28217')&#xA;GO&#xA;INSERT [dbo].[DynamicsAccountInsert] ([ID], [Name], [Address1_line1], [Address1_City], [Address1_StateOrProvince], [Address1_PostalCode]) VALUES (3, N'Task Factory Demo Account 3', N'3 Main St', N'Charlotte', N'NC', N'28217')&#xA;GO&#xA;INSERT [dbo].[DynamicsAccountInsert] ([ID], [Name], [Address1_line1], [Address1_City], [Address1_StateOrProvince], [Address1_PostalCode]) VALUES (4, N'Task Factory Demo Account 4', N'4 Main St', N'Charlotte', N'NC', N'28217')&#xA;GO&#xA;INSERT [dbo].[DynamicsAccountInsert] ([ID], [Name], [Address1_line1], [Address1_City], [Address1_StateOrProvince], [Address1_PostalCode]) VALUES (5, N'Task Factory Demo Account 5', N'5 Main St', N'Charlotte', N'NC', N'28217')&#xA;GO&#xA;INSERT [dbo].[DynamicsAccountInsert] ([ID], [Name], [Address1_line1], [Address1_City], [Address1_StateOrProvince], [Address1_PostalCode]) VALUES (6, N'Task Factory Demo Account 6', N'6 Main St', N'Charlotte', N'NC', N'28217')&#xA;GO&#xA;INSERT [dbo].[DynamicsAccountInsert] ([ID], [Name], [Address1_line1], [Address1_City], [Address1_StateOrProvince], [Address1_PostalCode]) VALUES (7, N'Task Factory Demo Account 7', N'7 Main St', N'Charlotte', N'NC', N'28217')&#xA;GO&#xA;INSERT [dbo].[DynamicsAccountInsert] ([ID], [Name], [Address1_line1], [Address1_City], [Address1_StateOrProvince], [Address1_PostalCode]) VALUES (8, N'Task Factory Demo Account 8', N'8 Main St', N'Charlotte', N'NC', N'28217')&#xA;GO&#xA;INSERT [dbo].[DynamicsAccountInsert] ([ID], [Name], [Address1_line1], [Address1_City], [Address1_StateOrProvince], [Address1_PostalCode]) VALUES (9, N'Task Factory Demo Account 9', N'9 Main St', N'Charlotte', N'NC', N'28217')&#xA;GO&#xA;INSERT [dbo].[DynamicsAccountInsert] ([ID], [Name], [Address1_line1], [Address1_City], [Address1_StateOrProvince], [Address1_PostalCode]) VALUES (10, N'Task Factory Demo Account 10', N'10 Main St', N'Charlotte', N'NC', N'28217')&#xA;GO&#xA;&#xA;IF NOT EXISTS (SELECT * FROM sys.objects WHERE NAME=N'DynamicsAccountUpsertSource')&#xA;&#xA;CREATE TABLE [dbo].[DynamicsAccountUpsertSource](&#xA;&#x9;[ID] [int] NULL,&#xA;&#x9;[Name] [nvarchar](50) NULL,&#xA;&#x9;[Address1_line1] [nvarchar](50) NULL,&#xA;&#x9;[Address1_City] [nvarchar](50) NULL,&#xA;&#x9;[Address1_StateOrProvince] [nvarchar](2) NULL,&#xA;&#x9;[Address1_PostalCode] [nvarchar](5) NULL&#xA;) ON [PRIMARY]&#xA;GO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{221703E1-7C98-401B-9948-2495AAD4404A}"
+      DTS:From="Package\CREATE LOCAL DATABASE"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\CREATE LOCAL TABLES" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="224,42"
+          Id="Package\CREATE LOCAL DATABASE"
+          TopLeft="280.5,80.5" />
+        <NodeLayout
+          Size="208,42"
+          Id="Package\CREATE LOCAL TABLES"
+          TopLeft="295.5,183.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="396,122.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,61"
+              Start="0,0"
+              End="0,53.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,53.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

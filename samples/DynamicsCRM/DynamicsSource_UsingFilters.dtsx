@@ -1,0 +1,1394 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/11/2019 12:34:04 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="FL-VM-QA-WS2016"
+  DTS:CreatorName="PWCORP\cphillips"
+  DTS:DTSID="{A2296FE4-01F2-4EF1-8DBE-0EB3750A4FF7}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1100.123"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="DynamicsSource_UsingFilters"
+  DTS:PackageType="5"
+  DTS:VersionBuild="12"
+  DTS:VersionGUID="{E481E300-433D-475B-A703-3EAAC0935A17}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[TF Dynamics CRM Connection Manager]"
+      DTS:CreationName="DynamicsCrmConnectionManager"
+      DTS:DTSID="{25CCA391-4442-471B-93C4-F3F1E52E11E9}"
+      DTS:ObjectName="TF Dynamics CRM Connection Manager">
+      <DTS:ObjectData>
+        <DynamicsConnectionManager
+          ConnectionString="UseProxy=False;UseConnectionSharing=False;ServerType=3;CRMVersion=4;OrganizationName=S1-CRM-QA;ProxyHost=;ProxyPort=0;ProxyUser=;ReuseSameConnection=False;ServerHost=disco.crm.dynamics.com;ServerTimeout=60;ServerUser=taskfactoryqa@sentryone.com;">
+          <ServerPassword
+            Sensitive="1" xmlns="www.microsoft.com/SqlServer/Dts"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAiqHIgf4PWkqXxAdRkDoZiQAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAACyHDVe3tkqXq4KBH/Hwn+2AAAAAASAAACgAAAAEAAAALYi+6U3MWUFoB7w+uhVKz0gAAAAWcfvYu7oni2+w1oiRxxZX9v0OH2Ina+uuGcJZWccOq4UAAAAn7JELWVbvXgAOAubCSLYSp3BjDg</ServerPassword>
+        </DynamicsConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Data Flow Task"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{4FD70B7A-82CF-4F9A-A048-FE0684935A8E}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Flow Task">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Data Flow Task\TF Dynamics CRM Source"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Dynamics Source;SQL Sentry, LLC; Task Factory (c) 2009 - 2019; https://www.sentryone.com;support@sentryone.com"
+              description="Retrieve data from a Dynamics CRM entity"
+              name="TF Dynamics CRM Source"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  name="DebugMode">false</property>
+                <property
+                  dataType="System.String"
+                  name="FilterQuery">[name] Like '%Task Factory Demo%'</property>
+                <property
+                  dataType="System.Int32"
+                  description="The maximum number of records to retrieve per round trip to the dynamics server"
+                  name="BatchSize">500</property>
+                <property
+                  dataType="System.Int32"
+                  description="How will data be retrieved from the entity. Name or Xml Query?"
+                  name="FetchMode"
+                  typeConverter="PragmaticWorks.TaskFactory.Components.Sources.Dynamics.DynamicsSource+FetchModeEnum, PragmaticWorks.TaskFactory.Components140, Version=1.0.0.0, Culture=neutral, PublicKeyToken=47acf905d0337c39">1</property>
+                <property
+                  dataType="System.String"
+                  description="Name of the entity to retrieve data from"
+                  expressionType="Notify"
+                  name="Entity">account</property>
+                <property
+                  dataType="System.String"
+                  description="The XML Query"
+                  expressionType="Notify"
+                  name="QueryXML">&lt;filter type="and"&gt;&lt;condition attribute="name" operator="like" value="%Task Factory Demo%" /&gt;&lt;/filter&gt;</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Get the changes for an entity"
+                  expressionType="Notify"
+                  name="Get Changes">false</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that will contain the tracking changes token."
+                  expressionType="Notify"
+                  name="Changes Token Variable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="The type of query being used to retrieve data."
+                  expressionType="Notify"
+                  name="Query Type"
+                  typeConverter="PragmaticWorks.TaskFactory.Components.Sources.Dynamics+DynamicsQueryType">0</property>
+                <property
+                  dataType="System.String"
+                  description="The name of the entity collection."
+                  expressionType="Notify"
+                  name="Collection Name"></property>
+                <property
+                  dataType="System.String"
+                  description="The xml used to fetch the metadata."
+                  expressionType="Notify"
+                  name="Metadata Fetch Xml"></property>
+                <property
+                  dataType="System.String"
+                  description="The underlying entity used by the saved query."
+                  expressionType="Notify"
+                  name="Query Entity"></property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">PragmaticWorks.TaskFactory.DynamicsSource</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\TF Dynamics CRM Source.Connections[DYNAMICSCONNECTION]"
+                  connectionManagerID="Package.ConnectionManagers[TF Dynamics CRM Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[TF Dynamics CRM Connection Manager]"
+                  description="Connection to the Dynamics CRM Server"
+                  name="DYNAMICSCONNECTION" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output]"
+                  name="Dynamics Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].Columns[accountid]"
+                      dataType="guid"
+                      errorOrTruncationOperation="DynamicsSource"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[accountid]"
+                      lineageId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].Columns[accountid]"
+                      name="accountid"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].Columns[createdon]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="DynamicsSource"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[createdon]"
+                      lineageId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].Columns[createdon]"
+                      name="createdon"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].Columns[name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="DynamicsSource"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[name]"
+                      length="160"
+                      lineageId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].Columns[name]"
+                      name="name"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[accountcategorycode]"
+                      dataType="i4"
+                      name="accountcategorycode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[accountcategorycodename]"
+                      dataType="wstr"
+                      length="250"
+                      name="accountcategorycodename" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[accountclassificationcode]"
+                      dataType="i4"
+                      name="accountclassificationcode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[accountclassificationcodename]"
+                      dataType="wstr"
+                      length="250"
+                      name="accountclassificationcodename" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[accountid]"
+                      dataType="guid"
+                      name="accountid" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[accountnumber]"
+                      dataType="wstr"
+                      length="20"
+                      name="accountnumber" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[accountratingcode]"
+                      dataType="i4"
+                      name="accountratingcode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[accountratingcodename]"
+                      dataType="wstr"
+                      length="250"
+                      name="accountratingcodename" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[address1_addressid]"
+                      dataType="guid"
+                      name="address1_addressid" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[address1_addresstypecode]"
+                      dataType="i4"
+                      name="address1_addresstypecode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[address1_addresstypecodename]"
+                      dataType="wstr"
+                      length="250"
+                      name="address1_addresstypecodename" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[address1_city]"
+                      dataType="wstr"
+                      length="80"
+                      name="address1_city" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[address1_composite]"
+                      dataType="nText"
+                      name="address1_composite" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[address1_country]"
+                      dataType="wstr"
+                      length="80"
+                      name="address1_country" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[address1_county]"
+                      dataType="wstr"
+                      length="50"
+                      name="address1_county" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[address1_fax]"
+                      dataType="wstr"
+                      length="50"
+                      name="address1_fax" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[address1_freighttermscode]"
+                      dataType="i4"
+                      name="address1_freighttermscode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[address1_freighttermscodename]"
+                      dataType="wstr"
+                      length="250"
+                      name="address1_freighttermscodename" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[address1_latitude]"
+                      dataType="r8"
+                      name="address1_latitude" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[address1_line1]"
+                      dataType="wstr"
+                      length="250"
+                      name="address1_line1" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[address1_line2]"
+                      dataType="wstr"
+                      length="250"
+                      name="address1_line2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[address1_line3]"
+                      dataType="wstr"
+                      length="250"
+                      name="address1_line3" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[address1_longitude]"
+                      dataType="r8"
+                      name="address1_longitude" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[address1_name]"
+                      dataType="wstr"
+                      length="200"
+                      name="address1_name" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[address1_postalcode]"
+                      dataType="wstr"
+                      length="20"
+                      name="address1_postalcode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[address1_postofficebox]"
+                      dataType="wstr"
+                      length="20"
+                      name="address1_postofficebox" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[address1_primarycontactname]"
+                      dataType="wstr"
+                      length="100"
+                      name="address1_primarycontactname" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[address1_shippingmethodcode]"
+                      dataType="i4"
+                      name="address1_shippingmethodcode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[address1_shippingmethodcodename]"
+                      dataType="wstr"
+                      length="250"
+                      name="address1_shippingmethodcodename" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[address1_stateorprovince]"
+                      dataType="wstr"
+                      length="50"
+                      name="address1_stateorprovince" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[address1_telephone1]"
+                      dataType="wstr"
+                      length="50"
+                      name="address1_telephone1" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[address1_telephone2]"
+                      dataType="wstr"
+                      length="50"
+                      name="address1_telephone2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[address1_telephone3]"
+                      dataType="wstr"
+                      length="50"
+                      name="address1_telephone3" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[address1_upszone]"
+                      dataType="wstr"
+                      length="4"
+                      name="address1_upszone" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[address1_utcoffset]"
+                      dataType="i4"
+                      name="address1_utcoffset" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[address2_addressid]"
+                      dataType="guid"
+                      name="address2_addressid" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[address2_addresstypecode]"
+                      dataType="i4"
+                      name="address2_addresstypecode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[address2_addresstypecodename]"
+                      dataType="wstr"
+                      length="250"
+                      name="address2_addresstypecodename" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[address2_city]"
+                      dataType="wstr"
+                      length="80"
+                      name="address2_city" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[address2_composite]"
+                      dataType="nText"
+                      name="address2_composite" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[address2_country]"
+                      dataType="wstr"
+                      length="80"
+                      name="address2_country" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[address2_county]"
+                      dataType="wstr"
+                      length="50"
+                      name="address2_county" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[address2_fax]"
+                      dataType="wstr"
+                      length="50"
+                      name="address2_fax" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[address2_freighttermscode]"
+                      dataType="i4"
+                      name="address2_freighttermscode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[address2_freighttermscodename]"
+                      dataType="wstr"
+                      length="250"
+                      name="address2_freighttermscodename" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[address2_latitude]"
+                      dataType="r8"
+                      name="address2_latitude" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[address2_line1]"
+                      dataType="wstr"
+                      length="250"
+                      name="address2_line1" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[address2_line2]"
+                      dataType="wstr"
+                      length="250"
+                      name="address2_line2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[address2_line3]"
+                      dataType="wstr"
+                      length="250"
+                      name="address2_line3" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[address2_longitude]"
+                      dataType="r8"
+                      name="address2_longitude" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[address2_name]"
+                      dataType="wstr"
+                      length="200"
+                      name="address2_name" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[address2_postalcode]"
+                      dataType="wstr"
+                      length="20"
+                      name="address2_postalcode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[address2_postofficebox]"
+                      dataType="wstr"
+                      length="20"
+                      name="address2_postofficebox" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[address2_primarycontactname]"
+                      dataType="wstr"
+                      length="100"
+                      name="address2_primarycontactname" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[address2_shippingmethodcode]"
+                      dataType="i4"
+                      name="address2_shippingmethodcode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[address2_shippingmethodcodename]"
+                      dataType="wstr"
+                      length="250"
+                      name="address2_shippingmethodcodename" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[address2_stateorprovince]"
+                      dataType="wstr"
+                      length="50"
+                      name="address2_stateorprovince" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[address2_telephone1]"
+                      dataType="wstr"
+                      length="50"
+                      name="address2_telephone1" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[address2_telephone2]"
+                      dataType="wstr"
+                      length="50"
+                      name="address2_telephone2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[address2_telephone3]"
+                      dataType="wstr"
+                      length="50"
+                      name="address2_telephone3" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[address2_upszone]"
+                      dataType="wstr"
+                      length="4"
+                      name="address2_upszone" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[address2_utcoffset]"
+                      dataType="i4"
+                      name="address2_utcoffset" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[aging30]"
+                      dataType="cy"
+                      name="aging30" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[aging30_base]"
+                      dataType="cy"
+                      name="aging30_base" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[aging60]"
+                      dataType="cy"
+                      name="aging60" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[aging60_base]"
+                      dataType="cy"
+                      name="aging60_base" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[aging90]"
+                      dataType="cy"
+                      name="aging90" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[aging90_base]"
+                      dataType="cy"
+                      name="aging90_base" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[businesstypecode]"
+                      dataType="i4"
+                      name="businesstypecode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[businesstypecodename]"
+                      dataType="wstr"
+                      length="250"
+                      name="businesstypecodename" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[createdby]"
+                      dataType="guid"
+                      name="createdby" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[createdbyexternalparty]"
+                      dataType="guid"
+                      name="createdbyexternalparty" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[createdbyexternalpartyname]"
+                      dataType="wstr"
+                      length="100"
+                      name="createdbyexternalpartyname" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[createdbyexternalpartyyominame]"
+                      dataType="wstr"
+                      length="100"
+                      name="createdbyexternalpartyyominame" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[createdbyname]"
+                      dataType="wstr"
+                      length="100"
+                      name="createdbyname" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[createdbyyominame]"
+                      dataType="wstr"
+                      length="100"
+                      name="createdbyyominame" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[createdon]"
+                      dataType="dbTimeStamp"
+                      name="createdon" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[createdonbehalfby]"
+                      dataType="guid"
+                      name="createdonbehalfby" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[createdonbehalfbyname]"
+                      dataType="wstr"
+                      length="100"
+                      name="createdonbehalfbyname" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[createdonbehalfbyyominame]"
+                      dataType="wstr"
+                      length="100"
+                      name="createdonbehalfbyyominame" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[creditlimit]"
+                      dataType="cy"
+                      name="creditlimit" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[creditlimit_base]"
+                      dataType="cy"
+                      name="creditlimit_base" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[creditonhold]"
+                      dataType="bool"
+                      name="creditonhold" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[creditonholdname]"
+                      dataType="wstr"
+                      length="250"
+                      name="creditonholdname" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[customersizecode]"
+                      dataType="i4"
+                      name="customersizecode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[customersizecodename]"
+                      dataType="wstr"
+                      length="250"
+                      name="customersizecodename" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[customertypecode]"
+                      dataType="i4"
+                      name="customertypecode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[customertypecodename]"
+                      dataType="wstr"
+                      length="250"
+                      name="customertypecodename" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[defaultpricelevelid]"
+                      dataType="guid"
+                      name="defaultpricelevelid" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[defaultpricelevelidname]"
+                      dataType="wstr"
+                      length="100"
+                      name="defaultpricelevelidname" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[description]"
+                      dataType="nText"
+                      name="description" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[donotbulkemail]"
+                      dataType="bool"
+                      name="donotbulkemail" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[donotbulkemailname]"
+                      dataType="wstr"
+                      length="250"
+                      name="donotbulkemailname" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[donotbulkpostalmail]"
+                      dataType="bool"
+                      name="donotbulkpostalmail" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[donotbulkpostalmailname]"
+                      dataType="wstr"
+                      length="250"
+                      name="donotbulkpostalmailname" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[donotemail]"
+                      dataType="bool"
+                      name="donotemail" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[donotemailname]"
+                      dataType="wstr"
+                      length="250"
+                      name="donotemailname" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[donotfax]"
+                      dataType="bool"
+                      name="donotfax" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[donotfaxname]"
+                      dataType="wstr"
+                      length="250"
+                      name="donotfaxname" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[donotphone]"
+                      dataType="bool"
+                      name="donotphone" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[donotphonename]"
+                      dataType="wstr"
+                      length="250"
+                      name="donotphonename" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[donotpostalmail]"
+                      dataType="bool"
+                      name="donotpostalmail" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[donotpostalmailname]"
+                      dataType="wstr"
+                      length="250"
+                      name="donotpostalmailname" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[donotsendmarketingmaterialname]"
+                      dataType="wstr"
+                      length="250"
+                      name="donotsendmarketingmaterialname" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[donotsendmm]"
+                      dataType="bool"
+                      name="donotsendmm" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[emailaddress1]"
+                      dataType="wstr"
+                      length="100"
+                      name="emailaddress1" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[emailaddress2]"
+                      dataType="wstr"
+                      length="100"
+                      name="emailaddress2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[emailaddress3]"
+                      dataType="wstr"
+                      length="100"
+                      name="emailaddress3" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[entityimageid]"
+                      dataType="guid"
+                      name="entityimageid" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[entityimage_timestamp]"
+                      dataType="i8"
+                      name="entityimage_timestamp" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[entityimage_url]"
+                      dataType="wstr"
+                      length="200"
+                      name="entityimage_url" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[exchangerate]"
+                      dataType="decimal"
+                      name="exchangerate" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[fax]"
+                      dataType="wstr"
+                      length="50"
+                      name="fax" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[followemail]"
+                      dataType="bool"
+                      name="followemail" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[followemailname]"
+                      dataType="wstr"
+                      length="250"
+                      name="followemailname" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[ftpsiteurl]"
+                      dataType="wstr"
+                      length="200"
+                      name="ftpsiteurl" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[importsequencenumber]"
+                      dataType="i4"
+                      name="importsequencenumber" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[industrycode]"
+                      dataType="i4"
+                      name="industrycode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[industrycodename]"
+                      dataType="wstr"
+                      length="250"
+                      name="industrycodename" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[isprivatename]"
+                      dataType="wstr"
+                      length="250"
+                      name="isprivatename" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[lastonholdtime]"
+                      dataType="dbTimeStamp"
+                      name="lastonholdtime" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[lastusedincampaign]"
+                      dataType="dbTimeStamp"
+                      name="lastusedincampaign" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[marketcap]"
+                      dataType="cy"
+                      name="marketcap" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[marketcap_base]"
+                      dataType="cy"
+                      name="marketcap_base" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[marketingonly]"
+                      dataType="bool"
+                      name="marketingonly" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[marketingonlyname]"
+                      dataType="wstr"
+                      length="250"
+                      name="marketingonlyname" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[masteraccountidname]"
+                      dataType="wstr"
+                      length="100"
+                      name="masteraccountidname" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[masteraccountidyominame]"
+                      dataType="wstr"
+                      length="100"
+                      name="masteraccountidyominame" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[masterid]"
+                      dataType="guid"
+                      name="masterid" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[merged]"
+                      dataType="bool"
+                      name="merged" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[mergedname]"
+                      dataType="wstr"
+                      length="250"
+                      name="mergedname" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[modifiedby]"
+                      dataType="guid"
+                      name="modifiedby" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[modifiedbyexternalparty]"
+                      dataType="guid"
+                      name="modifiedbyexternalparty" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[modifiedbyexternalpartyname]"
+                      dataType="wstr"
+                      length="100"
+                      name="modifiedbyexternalpartyname" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[modifiedbyexternalpartyyominame]"
+                      dataType="wstr"
+                      length="100"
+                      name="modifiedbyexternalpartyyominame" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[modifiedbyname]"
+                      dataType="wstr"
+                      length="100"
+                      name="modifiedbyname" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[modifiedbyyominame]"
+                      dataType="wstr"
+                      length="100"
+                      name="modifiedbyyominame" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[modifiedon]"
+                      dataType="dbTimeStamp"
+                      name="modifiedon" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[modifiedonbehalfby]"
+                      dataType="guid"
+                      name="modifiedonbehalfby" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[modifiedonbehalfbyname]"
+                      dataType="wstr"
+                      length="100"
+                      name="modifiedonbehalfbyname" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[modifiedonbehalfbyyominame]"
+                      dataType="wstr"
+                      length="100"
+                      name="modifiedonbehalfbyyominame" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[msdyn_billingaccount]"
+                      dataType="guid"
+                      name="msdyn_billingaccount" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[msdyn_billingaccountname]"
+                      dataType="wstr"
+                      length="160"
+                      name="msdyn_billingaccountname" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[msdyn_billingaccountyominame]"
+                      dataType="wstr"
+                      length="160"
+                      name="msdyn_billingaccountyominame" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[msdyn_externalaccountid]"
+                      dataType="wstr"
+                      length="100"
+                      name="msdyn_externalaccountid" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[msdyn_preferredresource]"
+                      dataType="guid"
+                      name="msdyn_preferredresource" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[msdyn_preferredresourcename]"
+                      dataType="wstr"
+                      length="100"
+                      name="msdyn_preferredresourcename" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[msdyn_salestaxcode]"
+                      dataType="guid"
+                      name="msdyn_salestaxcode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[msdyn_salestaxcodename]"
+                      dataType="wstr"
+                      length="100"
+                      name="msdyn_salestaxcodename" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[msdyn_serviceterritory]"
+                      dataType="guid"
+                      name="msdyn_serviceterritory" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[msdyn_serviceterritoryname]"
+                      dataType="wstr"
+                      length="200"
+                      name="msdyn_serviceterritoryname" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[msdyn_taxexempt]"
+                      dataType="bool"
+                      name="msdyn_taxexempt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[msdyn_taxexemptname]"
+                      dataType="wstr"
+                      length="250"
+                      name="msdyn_taxexemptname" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[msdyn_taxexemptnumber]"
+                      dataType="wstr"
+                      length="20"
+                      name="msdyn_taxexemptnumber" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[msdyn_travelcharge]"
+                      dataType="cy"
+                      name="msdyn_travelcharge" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[msdyn_travelchargetype]"
+                      dataType="i4"
+                      name="msdyn_travelchargetype" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[msdyn_travelchargetypename]"
+                      dataType="wstr"
+                      length="250"
+                      name="msdyn_travelchargetypename" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[msdyn_travelcharge_base]"
+                      dataType="cy"
+                      name="msdyn_travelcharge_base" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[msdyn_workorderinstructions]"
+                      dataType="nText"
+                      name="msdyn_workorderinstructions" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[name]"
+                      dataType="wstr"
+                      length="160"
+                      name="name" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[new_po_rebate]"
+                      dataType="i4"
+                      name="new_po_rebate" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[new_po_rebatename]"
+                      dataType="wstr"
+                      length="250"
+                      name="new_po_rebatename" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[numberofemployees]"
+                      dataType="i4"
+                      name="numberofemployees" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[onholdtime]"
+                      dataType="i4"
+                      name="onholdtime" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[opendeals]"
+                      dataType="i4"
+                      name="opendeals" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[opendeals_date]"
+                      dataType="dbTimeStamp"
+                      name="opendeals_date" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[opendeals_state]"
+                      dataType="i4"
+                      name="opendeals_state" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[openrevenue]"
+                      dataType="cy"
+                      name="openrevenue" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[openrevenue_base]"
+                      dataType="cy"
+                      name="openrevenue_base" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[openrevenue_date]"
+                      dataType="dbTimeStamp"
+                      name="openrevenue_date" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[openrevenue_state]"
+                      dataType="i4"
+                      name="openrevenue_state" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[originatingleadid]"
+                      dataType="guid"
+                      name="originatingleadid" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[originatingleadidname]"
+                      dataType="wstr"
+                      length="100"
+                      name="originatingleadidname" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[originatingleadidyominame]"
+                      dataType="wstr"
+                      length="100"
+                      name="originatingleadidyominame" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[overriddencreatedon]"
+                      dataType="dbTimeStamp"
+                      name="overriddencreatedon" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[ownerid]"
+                      dataType="guid"
+                      name="ownerid" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[owneridname]"
+                      dataType="wstr"
+                      length="100"
+                      name="owneridname" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[owneridtype]"
+                      dataType="wstr"
+                      length="250"
+                      name="owneridtype" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[owneridyominame]"
+                      dataType="wstr"
+                      length="100"
+                      name="owneridyominame" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[ownershipcode]"
+                      dataType="i4"
+                      name="ownershipcode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[ownershipcodename]"
+                      dataType="wstr"
+                      length="250"
+                      name="ownershipcodename" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[owningbusinessunit]"
+                      dataType="guid"
+                      name="owningbusinessunit" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[owningteam]"
+                      dataType="guid"
+                      name="owningteam" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[owninguser]"
+                      dataType="guid"
+                      name="owninguser" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[parentaccountid]"
+                      dataType="guid"
+                      name="parentaccountid" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[parentaccountidname]"
+                      dataType="wstr"
+                      length="100"
+                      name="parentaccountidname" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[parentaccountidyominame]"
+                      dataType="wstr"
+                      length="100"
+                      name="parentaccountidyominame" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[participatesinworkflow]"
+                      dataType="bool"
+                      name="participatesinworkflow" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[participatesinworkflowname]"
+                      dataType="wstr"
+                      length="250"
+                      name="participatesinworkflowname" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[paymenttermscode]"
+                      dataType="i4"
+                      name="paymenttermscode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[paymenttermscodename]"
+                      dataType="wstr"
+                      length="250"
+                      name="paymenttermscodename" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[preferredappointmentdaycode]"
+                      dataType="i4"
+                      name="preferredappointmentdaycode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[preferredappointmentdaycodename]"
+                      dataType="wstr"
+                      length="250"
+                      name="preferredappointmentdaycodename" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[preferredappointmenttimecode]"
+                      dataType="i4"
+                      name="preferredappointmenttimecode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[preferredappointmenttimecodename]"
+                      dataType="wstr"
+                      length="250"
+                      name="preferredappointmenttimecodename" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[preferredcontactmethodcode]"
+                      dataType="i4"
+                      name="preferredcontactmethodcode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[preferredcontactmethodcodename]"
+                      dataType="wstr"
+                      length="250"
+                      name="preferredcontactmethodcodename" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[preferredequipmentid]"
+                      dataType="guid"
+                      name="preferredequipmentid" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[preferredequipmentidname]"
+                      dataType="wstr"
+                      length="100"
+                      name="preferredequipmentidname" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[preferredserviceid]"
+                      dataType="guid"
+                      name="preferredserviceid" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[preferredserviceidname]"
+                      dataType="wstr"
+                      length="100"
+                      name="preferredserviceidname" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[preferredsystemuserid]"
+                      dataType="guid"
+                      name="preferredsystemuserid" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[preferredsystemuseridname]"
+                      dataType="wstr"
+                      length="100"
+                      name="preferredsystemuseridname" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[preferredsystemuseridyominame]"
+                      dataType="wstr"
+                      length="100"
+                      name="preferredsystemuseridyominame" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[primarycontactid]"
+                      dataType="guid"
+                      name="primarycontactid" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[primarycontactidname]"
+                      dataType="wstr"
+                      length="100"
+                      name="primarycontactidname" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[primarycontactidyominame]"
+                      dataType="wstr"
+                      length="100"
+                      name="primarycontactidyominame" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[primarysatoriid]"
+                      dataType="wstr"
+                      length="200"
+                      name="primarysatoriid" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[primarytwitterid]"
+                      dataType="wstr"
+                      length="128"
+                      name="primarytwitterid" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[processid]"
+                      dataType="guid"
+                      name="processid" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[revenue]"
+                      dataType="cy"
+                      name="revenue" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[revenue_base]"
+                      dataType="cy"
+                      name="revenue_base" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[sharesoutstanding]"
+                      dataType="i4"
+                      name="sharesoutstanding" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[shippingmethodcode]"
+                      dataType="i4"
+                      name="shippingmethodcode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[shippingmethodcodename]"
+                      dataType="wstr"
+                      length="250"
+                      name="shippingmethodcodename" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[sic]"
+                      dataType="wstr"
+                      length="20"
+                      name="sic" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[slaid]"
+                      dataType="guid"
+                      name="slaid" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[slainvokedid]"
+                      dataType="guid"
+                      name="slainvokedid" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[slainvokedidname]"
+                      dataType="wstr"
+                      length="100"
+                      name="slainvokedidname" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[slaname]"
+                      dataType="wstr"
+                      length="100"
+                      name="slaname" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[stageid]"
+                      dataType="guid"
+                      name="stageid" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[statecode]"
+                      dataType="i4"
+                      name="statecode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[statecodename]"
+                      dataType="wstr"
+                      length="250"
+                      name="statecodename" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[statuscode]"
+                      dataType="i4"
+                      name="statuscode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[statuscodename]"
+                      dataType="wstr"
+                      length="250"
+                      name="statuscodename" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[stockexchange]"
+                      dataType="wstr"
+                      length="20"
+                      name="stockexchange" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[teamsfollowed]"
+                      dataType="i4"
+                      name="teamsfollowed" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[telephone1]"
+                      dataType="wstr"
+                      length="50"
+                      name="telephone1" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[telephone2]"
+                      dataType="wstr"
+                      length="50"
+                      name="telephone2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[telephone3]"
+                      dataType="wstr"
+                      length="50"
+                      name="telephone3" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[territorycode]"
+                      dataType="i4"
+                      name="territorycode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[territorycodename]"
+                      dataType="wstr"
+                      length="250"
+                      name="territorycodename" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[territoryid]"
+                      dataType="guid"
+                      name="territoryid" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[territoryidname]"
+                      dataType="wstr"
+                      length="100"
+                      name="territoryidname" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[tickersymbol]"
+                      dataType="wstr"
+                      length="10"
+                      name="tickersymbol" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[timespentbymeonemailandmeetings]"
+                      dataType="wstr"
+                      length="1250"
+                      name="timespentbymeonemailandmeetings" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[timezoneruleversionnumber]"
+                      dataType="i4"
+                      name="timezoneruleversionnumber" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[transactioncurrencyid]"
+                      dataType="guid"
+                      name="transactioncurrencyid" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[transactioncurrencyidname]"
+                      dataType="wstr"
+                      length="100"
+                      name="transactioncurrencyidname" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[traversedpath]"
+                      dataType="wstr"
+                      length="1250"
+                      name="traversedpath" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[utcconversiontimezonecode]"
+                      dataType="i4"
+                      name="utcconversiontimezonecode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[versionnumber]"
+                      dataType="i8"
+                      name="versionnumber" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[websiteurl]"
+                      dataType="wstr"
+                      length="200"
+                      name="websiteurl" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output].ExternalColumns[yominame]"
+                      dataType="wstr"
+                      length="160"
+                      name="yominame" />
+                  </externalMetadataColumns>
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\TF Terminator Destination"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Terminator Destination;SentryOne; Task Factory © 2019 SQL Sentry, LLC; http://www.sentryone.com;support@sentryone.com"
+              description="The terminator destination is used to terminate a data flow path without any setup"
+              name="TF Terminator Destination"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Set this property to True if you want to save buffer data to text file"
+                  expressionType="Notify"
+                  name="EnableDataDump">false</property>
+                <property
+                  dataType="System.String"
+                  description="Output file path for data dump"
+                  expressionType="Notify"
+                  name="DumpFilePath"></property>
+                <property
+                  dataType="System.String"
+                  description="Output file column separator"
+                  expressionType="Notify"
+                  name="ColumnSeparator">,</property>
+                <property
+                  dataType="System.String"
+                  description="Output file row separator"
+                  expressionType="Notify"
+                  name="RowSeparator">\r\n</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Unicode character support"
+                  expressionType="Notify"
+                  name="SupportUnicode">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Output column names in the first row"
+                  expressionType="Notify"
+                  name="ColumnNamesInFirstRow">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">PW.TaskFactory.TerminatorDestination</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\TF Terminator Destination.Inputs[TerminatorInput]"
+                  hasSideEffects="true"
+                  name="TerminatorInput">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Data Flow Task.Paths[Dynamics Source Output]"
+              endId="Package\Data Flow Task\TF Terminator Destination.Inputs[TerminatorInput]"
+              name="Dynamics Source Output"
+              startId="Package\Data Flow Task\TF Dynamics CRM Source.Outputs[Dynamics Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Data Flow Task"
+          TopLeft="54.5,185.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="207,42"
+          Id="Package\Data Flow Task\TF Terminator Destination"
+          TopLeft="68.5,160.5" />
+        <NodeLayout
+          Size="209,42"
+          Id="Package\Data Flow Task\TF Dynamics CRM Source"
+          TopLeft="66.5,39.5" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Dynamics Source Output]"
+          TopLeft="171.5,81.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,79"
+              Start="0,0"
+              End="0,71.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,71.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,27.75,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

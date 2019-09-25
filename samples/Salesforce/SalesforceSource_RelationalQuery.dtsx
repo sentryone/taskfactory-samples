@@ -1,0 +1,1013 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/16/2019 12:39:18 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="FL-VM-QA-WS2016"
+  DTS:CreatorName="PWCORP\cphillips"
+  DTS:DTSID="{B56CBB6A-C23E-40E7-B285-C0BEBE32FA88}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1100.123"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="SalesforceSource_RelationalQuery"
+  DTS:PackageType="5"
+  DTS:VersionBuild="5"
+  DTS:VersionGUID="{D2DC504E-B7AF-4980-8AE1-D8635F0E603D}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Task Factory SalesForce.com Connection Manager]"
+      DTS:CreationName="SALESFORCE TF"
+      DTS:DTSID="{48691854-B015-4272-B64A-D330BC7D991A}"
+      DTS:ObjectName="Task Factory SalesForce.com Connection Manager">
+      <DTS:ObjectData>
+        <TaskFactorySalesForceConnectionManager
+          ConnectionString="ProxyAuthorizationScheme=0;Username=taskfactorydemo@outlook.com;ServerURL=;ServiceType=2;Timeout=60;UseProxy=False;ProxyHost=;ProxyUserName=;ProxyDomain=;ProxyPort=0;MessageListToHandle=;ReuseConnectionAcrossAllTasks=False;NumberOfRetries=0;ResponseStatusCodes=;RetryDelay=0;RetryMode=0;">
+          <Password
+            Sensitive="1" xmlns="www.microsoft.com/SqlServer/Dts"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAiqHIgf4PWkqXxAdRkDoZiQAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAAJtzcNLVXymRnVqKWf3w5SAAAAAASAAACgAAAAEAAAADV9n0/LMwmnWHlZ5txvufJIAAAAiz9vYUHGustsGCzWsu/hbufa/QrjDvNXLWrl+ClK9rlTE56Db8bwAe3QJKAIxn+zp1x/RMgdYZfl8qotx/pYlZRk6gHaOJ5SFAAAAFXi2V/e0v22UKExYXdCsI4PMGbg</Password>
+        </TaskFactorySalesForceConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Data Flow Task"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{64008416-2589-4EFE-B765-9998BD96D811}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Flow Task">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Data Flow Task\TF SalesForce Source"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="SalesForce.com Source;SentryOne; Task Factory © 2019 SQL Sentry, LLC; http://www.sentryone.com;support@sentryone.com"
+              description="Retrieves data from SalesForce.com objects"
+              name="TF SalesForce Source"
+              usesDispositions="true"
+              version="10">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of rows returned in each batch from SalesForce.com"
+                  name="BatchSize">500</property>
+                <property
+                  dataType="System.String"
+                  description="The statement used to query data from SalesForce.com"
+                  expressionType="Notify"
+                  name="QueryStatement">SELECT 
+ 	Id, 
+	Name, 
+	Account.BillingStreet,
+	Account.BillingCity,
+	Account.BillingState,
+	Account.BillingPostalCode,
+	StageName, 
+	Amount, 
+	Probability, 
+	ExpectedRevenue,  
+	CloseDate, 
+	Type,  
+	LeadSource, 
+	IsClosed, 
+	IsWon, 
+	ForecastCategory, 
+	ForecastCategoryName,  
+	HasOpportunityLineItem, 
+	OwnerId, 
+	CreatedDate, 
+	CreatedById, 
+	LastModifiedDate, 
+	LastModifiedById, 
+	SystemModstamp,  
+	FiscalQuarter, 
+	FiscalYear, 
+	Fiscal, 
+	LastReferencedDate, 
+	HasOpenActivity, 
+	HasOverdueTask, 
+	DeliveryInstallationStatus__c, 
+	TrackingNumber__c, 
+	OrderNumber__c, 
+	CurrentGenerators__c, 
+	MainCompetitors__c 
+ FROM 
+	Opportunity</property>
+                <property
+                  dataType="System.String"
+                  description="The name of the SalesForce.com object"
+                  expressionType="Notify"
+                  name="SalesForceObjectName">Opportunity</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Include deleted records in source data"
+                  expressionType="Notify"
+                  name="IncludeDeleted">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Set to true if a custom query is being used"
+                  expressionType="Notify"
+                  name="UseQuery">true</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Set to true if the local dates should be converted to UTC before being used in a where statement"
+                  expressionType="Notify"
+                  name="ConvertDatesToUTC">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="The type of query to execute (Normal or Bulk Query)"
+                  expressionType="Notify"
+                  name="Query Mode"
+                  typeConverter="PW.TaskFactory.SalesForceSource+QueryMode">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The format in which the dates will be outputted"
+                  expressionType="Notify"
+                  name="Output Date Timezone"
+                  typeConverter="PW.TaskFactory.SalesForceBulkJob+OutputDateTimezone">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds of to wait between polling checks for job status"
+                  name="Bulk Query Polling Interval">2</property>
+                <property
+                  dataType="System.Int32"
+                  description="The concurrency mode for the bulk query job"
+                  expressionType="Notify"
+                  name="Bulk Query Concurrency Mode"
+                  typeConverter="PW.TaskFactory.SalesForceBulkJob+ConcurrencyModeEnum">1</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">PW.TaskFactory.SalesForceSource</property>
+                <property
+                  dataType="System.Boolean"
+                  expressionType="Notify"
+                  name="DebugMode">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\TF SalesForce Source.Connections[SALESFORCE]"
+                  connectionManagerID="Package.ConnectionManagers[Task Factory SalesForce.com Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Task Factory SalesForce.com Connection Manager]"
+                  description="Connection to the SalesForce.com account"
+                  name="SALESFORCE" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data]"
+                  name="SalesForce Data">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[Id]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="SalesForce"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[Id]"
+                      length="18"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[Id]"
+                      name="Id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[Name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="SalesForce"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[Name]"
+                      length="120"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[Name]"
+                      name="Name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[Account.BillingStreet]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="SalesForce"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[Account.BillingStreet]"
+                      length="255"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[Account.BillingStreet]"
+                      name="Account.BillingStreet"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[Account.BillingCity]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="SalesForce"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[Account.BillingCity]"
+                      length="40"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[Account.BillingCity]"
+                      name="Account.BillingCity"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[Account.BillingState]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="SalesForce"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[Account.BillingState]"
+                      length="80"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[Account.BillingState]"
+                      name="Account.BillingState"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[Account.BillingPostalCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="SalesForce"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[Account.BillingPostalCode]"
+                      length="20"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[Account.BillingPostalCode]"
+                      name="Account.BillingPostalCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[StageName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="SalesForce"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[StageName]"
+                      length="40"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[StageName]"
+                      name="StageName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[Amount]"
+                      dataType="r8"
+                      errorOrTruncationOperation="SalesForce"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[Amount]"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[Amount]"
+                      name="Amount"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[Probability]"
+                      dataType="r8"
+                      errorOrTruncationOperation="SalesForce"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[Probability]"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[Probability]"
+                      name="Probability"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[ExpectedRevenue]"
+                      dataType="r8"
+                      errorOrTruncationOperation="SalesForce"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[ExpectedRevenue]"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[ExpectedRevenue]"
+                      name="ExpectedRevenue"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[CloseDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="SalesForce"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[CloseDate]"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[CloseDate]"
+                      name="CloseDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[Type]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="SalesForce"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[Type]"
+                      length="40"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[Type]"
+                      name="Type"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[LeadSource]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="SalesForce"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[LeadSource]"
+                      length="40"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[LeadSource]"
+                      name="LeadSource"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[IsClosed]"
+                      dataType="bool"
+                      errorOrTruncationOperation="SalesForce"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[IsClosed]"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[IsClosed]"
+                      name="IsClosed"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[IsWon]"
+                      dataType="bool"
+                      errorOrTruncationOperation="SalesForce"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[IsWon]"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[IsWon]"
+                      name="IsWon"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[ForecastCategory]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="SalesForce"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[ForecastCategory]"
+                      length="40"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[ForecastCategory]"
+                      name="ForecastCategory"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[ForecastCategoryName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="SalesForce"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[ForecastCategoryName]"
+                      length="40"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[ForecastCategoryName]"
+                      name="ForecastCategoryName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[HasOpportunityLineItem]"
+                      dataType="bool"
+                      errorOrTruncationOperation="SalesForce"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[HasOpportunityLineItem]"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[HasOpportunityLineItem]"
+                      name="HasOpportunityLineItem"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[OwnerId]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="SalesForce"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[OwnerId]"
+                      length="18"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[OwnerId]"
+                      name="OwnerId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[CreatedDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="SalesForce"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[CreatedDate]"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[CreatedDate]"
+                      name="CreatedDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[CreatedById]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="SalesForce"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[CreatedById]"
+                      length="18"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[CreatedById]"
+                      name="CreatedById"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[LastModifiedDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="SalesForce"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[LastModifiedDate]"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[LastModifiedDate]"
+                      name="LastModifiedDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[LastModifiedById]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="SalesForce"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[LastModifiedById]"
+                      length="18"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[LastModifiedById]"
+                      name="LastModifiedById"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[SystemModstamp]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="SalesForce"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[SystemModstamp]"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[SystemModstamp]"
+                      name="SystemModstamp"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[FiscalQuarter]"
+                      dataType="i4"
+                      errorOrTruncationOperation="SalesForce"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[FiscalQuarter]"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[FiscalQuarter]"
+                      name="FiscalQuarter"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[FiscalYear]"
+                      dataType="i4"
+                      errorOrTruncationOperation="SalesForce"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[FiscalYear]"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[FiscalYear]"
+                      name="FiscalYear"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[Fiscal]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="SalesForce"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[Fiscal]"
+                      length="6"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[Fiscal]"
+                      name="Fiscal"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[LastReferencedDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="SalesForce"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[LastReferencedDate]"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[LastReferencedDate]"
+                      name="LastReferencedDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[HasOpenActivity]"
+                      dataType="bool"
+                      errorOrTruncationOperation="SalesForce"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[HasOpenActivity]"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[HasOpenActivity]"
+                      name="HasOpenActivity"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[HasOverdueTask]"
+                      dataType="bool"
+                      errorOrTruncationOperation="SalesForce"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[HasOverdueTask]"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[HasOverdueTask]"
+                      name="HasOverdueTask"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[DeliveryInstallationStatus__c]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="SalesForce"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[DeliveryInstallationStatus__c]"
+                      length="255"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[DeliveryInstallationStatus__c]"
+                      name="DeliveryInstallationStatus__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[TrackingNumber__c]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="SalesForce"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[TrackingNumber__c]"
+                      length="12"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[TrackingNumber__c]"
+                      name="TrackingNumber__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[OrderNumber__c]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="SalesForce"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[OrderNumber__c]"
+                      length="8"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[OrderNumber__c]"
+                      name="OrderNumber__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[CurrentGenerators__c]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="SalesForce"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[CurrentGenerators__c]"
+                      length="100"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[CurrentGenerators__c]"
+                      name="CurrentGenerators__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[MainCompetitors__c]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="SalesForce"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[MainCompetitors__c]"
+                      length="100"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].Columns[MainCompetitors__c]"
+                      name="MainCompetitors__c"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[Id]"
+                      dataType="wstr"
+                      length="18"
+                      name="Id" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[Name]"
+                      dataType="wstr"
+                      length="120"
+                      name="Name" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[Account.BillingStreet]"
+                      dataType="wstr"
+                      length="255"
+                      name="Account.BillingStreet" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[Account.BillingCity]"
+                      dataType="wstr"
+                      length="40"
+                      name="Account.BillingCity" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[Account.BillingState]"
+                      dataType="wstr"
+                      length="80"
+                      name="Account.BillingState" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[Account.BillingPostalCode]"
+                      dataType="wstr"
+                      length="20"
+                      name="Account.BillingPostalCode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[StageName]"
+                      dataType="wstr"
+                      length="40"
+                      name="StageName" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[Amount]"
+                      dataType="r8"
+                      name="Amount" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[Probability]"
+                      dataType="r8"
+                      name="Probability" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[ExpectedRevenue]"
+                      dataType="r8"
+                      name="ExpectedRevenue" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[CloseDate]"
+                      dataType="dbDate"
+                      name="CloseDate" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[Type]"
+                      dataType="wstr"
+                      length="40"
+                      name="Type" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[LeadSource]"
+                      dataType="wstr"
+                      length="40"
+                      name="LeadSource" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[IsClosed]"
+                      dataType="bool"
+                      name="IsClosed" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[IsWon]"
+                      dataType="bool"
+                      name="IsWon" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[ForecastCategory]"
+                      dataType="wstr"
+                      length="40"
+                      name="ForecastCategory" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[ForecastCategoryName]"
+                      dataType="wstr"
+                      length="40"
+                      name="ForecastCategoryName" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[HasOpportunityLineItem]"
+                      dataType="bool"
+                      name="HasOpportunityLineItem" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[OwnerId]"
+                      dataType="wstr"
+                      length="18"
+                      name="OwnerId" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[CreatedDate]"
+                      dataType="dbTimeStamp"
+                      name="CreatedDate" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[CreatedById]"
+                      dataType="wstr"
+                      length="18"
+                      name="CreatedById" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[LastModifiedDate]"
+                      dataType="dbTimeStamp"
+                      name="LastModifiedDate" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[LastModifiedById]"
+                      dataType="wstr"
+                      length="18"
+                      name="LastModifiedById" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[SystemModstamp]"
+                      dataType="dbTimeStamp"
+                      name="SystemModstamp" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[FiscalQuarter]"
+                      dataType="i4"
+                      name="FiscalQuarter" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[FiscalYear]"
+                      dataType="i4"
+                      name="FiscalYear" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[Fiscal]"
+                      dataType="wstr"
+                      length="6"
+                      name="Fiscal" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[LastReferencedDate]"
+                      dataType="dbTimeStamp"
+                      name="LastReferencedDate" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[HasOpenActivity]"
+                      dataType="bool"
+                      name="HasOpenActivity" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[HasOverdueTask]"
+                      dataType="bool"
+                      name="HasOverdueTask" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[DeliveryInstallationStatus__c]"
+                      dataType="wstr"
+                      length="255"
+                      name="DeliveryInstallationStatus__c" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[TrackingNumber__c]"
+                      dataType="wstr"
+                      length="12"
+                      name="TrackingNumber__c" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[OrderNumber__c]"
+                      dataType="wstr"
+                      length="8"
+                      name="OrderNumber__c" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[CurrentGenerators__c]"
+                      dataType="wstr"
+                      length="100"
+                      name="CurrentGenerators__c" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data].ExternalColumns[MainCompetitors__c]"
+                      dataType="wstr"
+                      length="100"
+                      name="MainCompetitors__c" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output]"
+                  isErrorOut="true"
+                  name="SalesForce Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[ErrorDescription]"
+                      dataType="wstr"
+                      length="1024"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[ErrorDescription]"
+                      name="ErrorDescription" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[Id]"
+                      dataType="wstr"
+                      length="18"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[Id]"
+                      name="Id" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[Name]"
+                      dataType="wstr"
+                      length="120"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[Name]"
+                      name="Name" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[Account.BillingStreet]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[Account.BillingStreet]"
+                      name="Account.BillingStreet" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[Account.BillingCity]"
+                      dataType="wstr"
+                      length="40"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[Account.BillingCity]"
+                      name="Account.BillingCity" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[Account.BillingState]"
+                      dataType="wstr"
+                      length="80"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[Account.BillingState]"
+                      name="Account.BillingState" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[Account.BillingPostalCode]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[Account.BillingPostalCode]"
+                      name="Account.BillingPostalCode" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[StageName]"
+                      dataType="wstr"
+                      length="40"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[StageName]"
+                      name="StageName" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[Amount]"
+                      dataType="r8"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[Amount]"
+                      name="Amount" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[Probability]"
+                      dataType="r8"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[Probability]"
+                      name="Probability" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[ExpectedRevenue]"
+                      dataType="r8"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[ExpectedRevenue]"
+                      name="ExpectedRevenue" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[CloseDate]"
+                      dataType="dbDate"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[CloseDate]"
+                      name="CloseDate" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[Type]"
+                      dataType="wstr"
+                      length="40"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[Type]"
+                      name="Type" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[LeadSource]"
+                      dataType="wstr"
+                      length="40"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[LeadSource]"
+                      name="LeadSource" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[IsClosed]"
+                      dataType="bool"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[IsClosed]"
+                      name="IsClosed" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[IsWon]"
+                      dataType="bool"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[IsWon]"
+                      name="IsWon" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[ForecastCategory]"
+                      dataType="wstr"
+                      length="40"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[ForecastCategory]"
+                      name="ForecastCategory" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[ForecastCategoryName]"
+                      dataType="wstr"
+                      length="40"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[ForecastCategoryName]"
+                      name="ForecastCategoryName" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[HasOpportunityLineItem]"
+                      dataType="bool"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[HasOpportunityLineItem]"
+                      name="HasOpportunityLineItem" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[OwnerId]"
+                      dataType="wstr"
+                      length="18"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[OwnerId]"
+                      name="OwnerId" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[CreatedDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[CreatedDate]"
+                      name="CreatedDate" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[CreatedById]"
+                      dataType="wstr"
+                      length="18"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[CreatedById]"
+                      name="CreatedById" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[LastModifiedDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[LastModifiedDate]"
+                      name="LastModifiedDate" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[LastModifiedById]"
+                      dataType="wstr"
+                      length="18"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[LastModifiedById]"
+                      name="LastModifiedById" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[SystemModstamp]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[SystemModstamp]"
+                      name="SystemModstamp" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[FiscalQuarter]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[FiscalQuarter]"
+                      name="FiscalQuarter" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[FiscalYear]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[FiscalYear]"
+                      name="FiscalYear" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[Fiscal]"
+                      dataType="wstr"
+                      length="6"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[Fiscal]"
+                      name="Fiscal" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[LastReferencedDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[LastReferencedDate]"
+                      name="LastReferencedDate" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[HasOpenActivity]"
+                      dataType="bool"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[HasOpenActivity]"
+                      name="HasOpenActivity" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[HasOverdueTask]"
+                      dataType="bool"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[HasOverdueTask]"
+                      name="HasOverdueTask" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[DeliveryInstallationStatus__c]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[DeliveryInstallationStatus__c]"
+                      name="DeliveryInstallationStatus__c" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[TrackingNumber__c]"
+                      dataType="wstr"
+                      length="12"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[TrackingNumber__c]"
+                      name="TrackingNumber__c" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[OrderNumber__c]"
+                      dataType="wstr"
+                      length="8"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[OrderNumber__c]"
+                      name="OrderNumber__c" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[CurrentGenerators__c]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[CurrentGenerators__c]"
+                      name="CurrentGenerators__c" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[MainCompetitors__c]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Error Output].Columns[MainCompetitors__c]"
+                      name="MainCompetitors__c" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\TF Terminator Destination"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Terminator Destination;SentryOne; Task Factory © 2019 SQL Sentry, LLC; http://www.sentryone.com;support@sentryone.com"
+              description="The terminator destination is used to terminate a data flow path without any setup"
+              name="TF Terminator Destination"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Set this property to True if you want to save buffer data to text file"
+                  expressionType="Notify"
+                  name="EnableDataDump">false</property>
+                <property
+                  dataType="System.String"
+                  description="Output file path for data dump"
+                  expressionType="Notify"
+                  name="DumpFilePath"></property>
+                <property
+                  dataType="System.String"
+                  description="Output file column separator"
+                  expressionType="Notify"
+                  name="ColumnSeparator">,</property>
+                <property
+                  dataType="System.String"
+                  description="Output file row separator"
+                  expressionType="Notify"
+                  name="RowSeparator">\r\n</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Unicode character support"
+                  expressionType="Notify"
+                  name="SupportUnicode">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Output column names in the first row"
+                  expressionType="Notify"
+                  name="ColumnNamesInFirstRow">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">PW.TaskFactory.TerminatorDestination</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\TF Terminator Destination.Inputs[TerminatorInput]"
+                  hasSideEffects="true"
+                  name="TerminatorInput">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Data Flow Task.Paths[SalesForce Data]"
+              endId="Package\Data Flow Task\TF Terminator Destination.Inputs[TerminatorInput]"
+              name="SalesForce Data"
+              startId="Package\Data Flow Task\TF SalesForce Source.Outputs[SalesForce Data]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Data Flow Task"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="189,42"
+          Id="Package\Data Flow Task\TF SalesForce Source"
+          TopLeft="289.5,13.5" />
+        <NodeLayout
+          Size="207,42"
+          Id="Package\Data Flow Task\TF Terminator Destination"
+          TopLeft="281.5,125.5" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[SalesForce Data]"
+          TopLeft="384.5,55.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,70"
+              Start="0,0"
+              End="0,62.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,62.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,23.25,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

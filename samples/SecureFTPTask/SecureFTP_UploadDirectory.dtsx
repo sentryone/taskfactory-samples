@@ -1,0 +1,103 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/18/2019 3:30:07 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="FL-VM-QA-WS2016"
+  DTS:CreatorName="PWCORP\cphillips"
+  DTS:DTSID="{0200E667-14B2-4753-BE69-1AE6FA35CA84}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1100.123"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="SecureFTP_UploadDirectory"
+  DTS:PackageType="5"
+  DTS:VersionBuild="6"
+  DTS:VersionGUID="{776E2F3C-6EFA-4E60-BDE0-6330BD9043C9}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SFTP]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{4BFB0B70-1847-4F7C-8BD6-B148E2853047}"
+      DTS:ObjectName="SFTP">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:FileUsageType="2"
+          DTS:ConnectionString="C:\Windows\Temp\TaskFactoryDemo\SFTP\UploadDirectorySource" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[TF SFTP Connection Manager]"
+      DTS:CreationName="SFTPConnection"
+      DTS:DTSID="{96DC5D78-9BCB-477D-BBD8-30C0FAA11FCB}"
+      DTS:ObjectName="TF SFTP Connection Manager">
+      <DTS:ObjectData>
+        <SFTPConnectionManager
+          ConnectionString="ConnectionType=1;Host=10.65.25.124;Port=22;Username=taskfactorydemo;Timeout=60;DefaultRemoteDirectory=;UseProxy=False;ReuseConnection=False;ProxyType=0;ProxyHost=;ProxyPort=0;ProxyUsername=;UseBinaryTransfer=True;UsePassiveMode=True;IgnoreServerIP=True;TransferBufferSize=0;SSLVersion=2;MaxSSLVersion=2;AuthenticationMode=0;KeyFile=;">
+          <Password
+            Sensitive="1" xmlns="www.microsoft.com/SqlServer/Dts"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAiqHIgf4PWkqXxAdRkDoZiQAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAABuIdhLp4xTVqXvzfcE+sdwAAAAAASAAACgAAAAEAAAAJzPGZEuXwTBcYq0gDeE6ZMYAAAAxhVJASTZI9kWNZ5NGCqrE3YN80NjrvbSFAAAAFjC8Ancnionk3YAAjYOPQLbvYkA</Password>
+        </SFTPConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\TF Secure FTP Task"
+      DTS:CreationName="PW.TaskFactory.SFTPTask"
+      DTS:Description="TF Secure FTP Task"
+      DTS:DTSID="{816CA260-405D-42B9-AAD0-30AAD92C4B30}"
+      DTS:ExecutableType="PW.TaskFactory.SFTPTask"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="TF Secure FTP Task"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SFTPTask
+          NumberOfRetries="0"
+          IncludeSubdirectories="True"
+          TaskAction="Upload_directory_to_server"
+          StopPackageOnFailure="True"
+          LocalPathStoredInVariable="False"
+          LogFileLocation=""
+          NewFileName=""
+          LocalFileVariableName="&lt;Select Variable&gt;"
+          FileFilter=""
+          LocalFileFilter=""
+          ResultVariable=""
+          LocalConnectionManagerName="SFTP"
+          OverwriteLocalFile="False"
+          RemotePathContainsFileName="False"
+          RemoteFTPConnectionName="{96DC5D78-9BCB-477D-BBD8-30C0FAA11FCB}"
+          RemotePathStoredInVariable="False"
+          RemoteDirectoryOrFile="/home/taskfactorydemo/SFTP/UploadedDirectory"
+          OverwriteRemoteFile="True"
+          ShowDebugInfo="False"
+          SSHMaxPacketSize="0" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="181,42"
+          Id="Package\TF Secure FTP Task"
+          TopLeft="224.5,129.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

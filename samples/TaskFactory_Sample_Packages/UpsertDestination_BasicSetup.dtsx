@@ -1,0 +1,964 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/22/2019 6:06:44 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="FL-VM-QA-WS2016"
+  DTS:CreatorName="PWCORP\cphillips"
+  DTS:DTSID="{FD4BE854-2952-4BA7-9737-6A5D74C43D89}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1100.123"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="UpsertDestination_BasicSetup"
+  DTS:PackageType="5"
+  DTS:VersionBuild="8"
+  DTS:VersionGUID="{BC3ABBBE-51B5-426C-9EF6-4B562CC78701}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.TaskFactoryDemo]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{BE9BE9EC-F7A2-4C92-B784-B2BDE383EF80}"
+      DTS:ObjectName="LocalHost.TaskFactoryDemo">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=.;Initial Catalog=TaskFactoryDemo;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[localhost.TaskFactoryDemo1]"
+      DTS:CreationName="ADO.NET:SQL"
+      DTS:DTSID="{1DFE8DD2-0F4E-4FB8-B34C-B2D48CABDB7A}"
+      DTS:ObjectName="localhost.TaskFactoryDemo1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=TaskFactoryDemo;Integrated Security=True;Application Name=SSIS-UpsertDestination_BasicSetup-{1DFE8DD2-0F4E-4FB8-B34C-B2D48CABDB7A}localhost.TaskFactoryDemo1;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Data Flow Task"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{A2410BE7-5336-4DBD-964B-C73ED1052707}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Flow Task">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Data Flow Task\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[UpsertSourceData]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT TOP (10) [ID]
+      ,[FirstName]
+      ,[LastName]
+      ,[AddressLine1]
+      ,[City]
+      ,[State]
+      ,[PostalCode]
+  FROM [TaskFactoryDemo].[dbo].[UpsertSourceData]</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.TaskFactoryDemo]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.TaskFactoryDemo]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ID]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ID]"
+                      name="ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[FirstName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FirstName]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[FirstName]"
+                      name="FirstName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[LastName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LastName]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[LastName]"
+                      name="LastName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[AddressLine1]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[AddressLine1]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[AddressLine1]"
+                      name="AddressLine1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[City]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[City]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[City]"
+                      name="City"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[State]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[State]"
+                      length="2"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[State]"
+                      name="State"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[PostalCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PostalCode]"
+                      length="10"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[PostalCode]"
+                      name="PostalCode"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ID]"
+                      dataType="i4"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FirstName]"
+                      dataType="wstr"
+                      length="50"
+                      name="FirstName" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LastName]"
+                      dataType="wstr"
+                      length="50"
+                      name="LastName" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[AddressLine1]"
+                      dataType="wstr"
+                      length="50"
+                      name="AddressLine1" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[City]"
+                      dataType="wstr"
+                      length="50"
+                      name="City" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[State]"
+                      dataType="wstr"
+                      length="2"
+                      name="State" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PostalCode]"
+                      dataType="wstr"
+                      length="10"
+                      name="PostalCode" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ID]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ID]"
+                      name="ID" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FirstName]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FirstName]"
+                      name="FirstName" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LastName]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LastName]"
+                      name="LastName" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[AddressLine1]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[AddressLine1]"
+                      name="AddressLine1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[City]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[City]"
+                      name="City" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[State]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[State]"
+                      name="State" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PostalCode]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PostalCode]"
+                      name="PostalCode" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\TF Advanced Derived Column Transform"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="TF Advanced Derived Column Transform;https://www.sentryone.com"
+              description="Advanced Derived Column Transform"
+              name="TF Advanced Derived Column Transform"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  name="VariableColumns">﻿&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;ArrayOfExpressionColumn xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" /&gt;</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">PW.TaskFactory.AdvancedDerivedColumnTransform</property>
+                <property
+                  dataType="System.Decimal"
+                  name="ErrorsToSkip">0</property>
+                <property
+                  dataType="System.Boolean"
+                  name="LegacyMode">false</property>
+                <property
+                  dataType="System.Decimal"
+                  name="MaxWarnings">10</property>
+                <property
+                  dataType="System.Int32"
+                  name="ErrorOption">0</property>
+                <property
+                  dataType="System.Int32"
+                  name="TurncationOption">0</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\TF Advanced Derived Column Transform.Inputs[TF Derived Column Input]"
+                  name="TF Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\TF Advanced Derived Column Transform.Inputs[TF Derived Column Input].Columns[ID]"
+                      cachedDataType="i4"
+                      cachedName="ID"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\TF Advanced Derived Column Transform.Inputs[TF Derived Column Input].Columns[City]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="City"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[City]"
+                      name="City"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="FriendlyExpression">IIF(ID &lt;= 3, 'Jacksonville', City)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          name="Expression">IIF(  OpLtEq(&lt;&lt;%ID||#{Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ID]}%&gt;&gt;,3) , "Jacksonville", &lt;&lt;%City||#{Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[City]}%&gt;&gt;)</property>
+                        <property
+                          dataType="System.String"
+                          name="LastError"></property>
+                        <property
+                          dataType="System.Double"
+                          name="EvaluationOrder">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\TF Advanced Derived Column Transform.Inputs[TF Derived Column Input].Columns[State]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="State"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[State]"
+                      name="State"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="FriendlyExpression">IIF(ID &lt;= 3, 'FL', State)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          name="Expression">IIF(  OpLtEq(&lt;&lt;%ID||#{Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ID]}%&gt;&gt;,3) , "FL", &lt;&lt;%State||#{Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[State]}%&gt;&gt;)</property>
+                        <property
+                          dataType="System.String"
+                          name="LastError"></property>
+                        <property
+                          dataType="System.Double"
+                          name="EvaluationOrder">1</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\TF Advanced Derived Column Transform.Outputs[TF Derived Column Output]"
+                  errorOrTruncationOperation="Error"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="TF Derived Column Output"
+                  synchronousInputId="Package\Data Flow Task\TF Advanced Derived Column Transform.Inputs[TF Derived Column Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\TF Advanced Derived Column Transform.Outputs[Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Error Output"
+                  synchronousInputId="Package\Data Flow Task\TF Advanced Derived Column Transform.Inputs[TF Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF Advanced Derived Column Transform.Outputs[Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\TF Advanced Derived Column Transform.Outputs[Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF Advanced Derived Column Transform.Outputs[Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\TF Advanced Derived Column Transform.Outputs[Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\TF Upsert Destination"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Upsert Destinaton; SentryOne; Task Factory © 2019 SQL Sentry, LLC; http://www.sentryone.com;support@sentryone.com"
+              description="The Upsert Destination takes input data coming from the pipeline and then conditionally inserts, updates or deletes data from the destination."
+              name="TF Upsert Destination"
+              usesDispositions="true"
+              version="14">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  expressionType="Notify"
+                  name="DebugMode">false</property>
+                <property
+                  dataType="System.String"
+                  expressionType="Notify"
+                  name="DESTINATION_TABLE_NAME">[dbo].[UpsertDestination]</property>
+                <property
+                  dataType="System.Boolean"
+                  expressionType="Notify"
+                  name="ENABLE_IDENTITY_INSERT">false</property>
+                <property
+                  dataType="System.String"
+                  expressionType="Notify"
+                  name="INSERT_ROWS_COUNT_VARIABLE">&lt;Select Variable&gt;</property>
+                <property
+                  dataType="System.String"
+                  expressionType="Notify"
+                  name="UPDATE_ROWS_COUNT_VARIABLE">&lt;Select Variable&gt;</property>
+                <property
+                  dataType="System.String"
+                  expressionType="Notify"
+                  name="COMMAND_TIMEOUT">0</property>
+                <property
+                  dataType="System.Int32"
+                  expressionType="Notify"
+                  name="UPDATE_METHOD"
+                  typeConverter="PW.TaskFactory.Enums+UpsertUpdateMethod">1</property>
+                <property
+                  dataType="System.Boolean"
+                  expressionType="Notify"
+                  name="ACTION_UPDATE">true</property>
+                <property
+                  dataType="System.Boolean"
+                  expressionType="Notify"
+                  name="ACTION_INSERT">true</property>
+                <property
+                  dataType="System.String"
+                  expressionType="Notify"
+                  name="POST_UPDATE_COLUMN">LastModified</property>
+                <property
+                  dataType="System.Boolean"
+                  expressionType="Notify"
+                  name="TURN_OFF_INTERNAL_TRANSACTION">false</property>
+                <property
+                  dataType="System.String"
+                  expressionType="Notify"
+                  name="ROW_FLAG_COLUMN"></property>
+                <property
+                  dataType="System.String"
+                  expressionType="Notify"
+                  name="ROW_FLAG_COLUMN_INSERT_VALUE"></property>
+                <property
+                  dataType="System.String"
+                  expressionType="Notify"
+                  name="ROW_FLAG_COLUMN_DELETE_VALUE"></property>
+                <property
+                  dataType="System.String"
+                  expressionType="Notify"
+                  name="ROW_FLAG_COLUMN_REJECT_VALUE"></property>
+                <property
+                  dataType="System.String"
+                  expressionType="Notify"
+                  name="ROW_FLAG_COLUMN_UPDATE_VALUE"></property>
+                <property
+                  dataType="System.String"
+                  expressionType="Notify"
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  expressionType="Notify"
+                  name="AccessMode"
+                  typeConverter="PW.TaskFactory.Enums+UpsertAccessModeEnum">0</property>
+                <property
+                  dataType="System.Int32"
+                  expressionType="Notify"
+                  name="UPSERT_METHOD"
+                  typeConverter="PW.TaskFactory.Enums+UpsertMethod">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates the Upsert destination will use a custom definition for it's temp table creation"
+                  expressionType="Notify"
+                  name="Use Custom Temp Table">false</property>
+                <property
+                  dataType="System.String"
+                  description="Definition of the custom temp table script"
+                  expressionType="Notify"
+                  name="Custom Temp Table Definition"></property>
+                <property
+                  dataType="System.Boolean"
+                  description="Use a merge statement for the insert and updates instead of two seperate insert and update statements"
+                  expressionType="Notify"
+                  name="Use Merge Statement">false</property>
+                <property
+                  dataType="System.String"
+                  description="The script to run before each buffer is sent to the destination"
+                  expressionType="Notify"
+                  name="Before Script"></property>
+                <property
+                  dataType="System.String"
+                  description="The script to run after each buffer is sent to the destination"
+                  expressionType="Notify"
+                  name="After Script"></property>
+                <property
+                  dataType="System.Boolean"
+                  description="Set to true if you want the component to fail if the before script throws an exception."
+                  expressionType="Notify"
+                  name="Fail Component If Before Script Throws Exception">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Set to true if you want the component to fail if the after script throws an exception."
+                  expressionType="Notify"
+                  name="Fail Component If After Script Throws Exception">false</property>
+                <property
+                  dataType="System.String"
+                  description="Allows you to set a table hint for the destination table (e.g. NOLOCK - SNAPSHOT)."
+                  expressionType="Notify"
+                  name="Table Hint"></property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">PW.TaskFactory.UpsertDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\TF Upsert Destination.Connections[DestinationConnection]"
+                  connectionManagerID="Package.ConnectionManagers[localhost.TaskFactoryDemo1]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.TaskFactoryDemo1]"
+                  description="Connection for the destination"
+                  name="DestinationConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\TF Upsert Destination.Inputs[Input]"
+                  errorOrTruncationOperation="Error or Truncation"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\TF Upsert Destination.Inputs[Input].Columns[ID]"
+                      cachedDataType="i4"
+                      cachedName="ID"
+                      externalMetadataColumnId="Package\Data Flow Task\TF Upsert Destination.Inputs[Input].ExternalColumns[ID]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Mapped Column for Destination"
+                          name="DestinationColumn">ID</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Is Column A Key Column"
+                          name="IsKeyColumn">true</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Is Column An Identity Column"
+                          name="IsIdentityColumn">false</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\TF Upsert Destination.Inputs[Input].Columns[FirstName]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="FirstName"
+                      externalMetadataColumnId="Package\Data Flow Task\TF Upsert Destination.Inputs[Input].ExternalColumns[FirstName]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[FirstName]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Mapped Column for Destination"
+                          name="DestinationColumn">FirstName</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Is Column A Key Column"
+                          name="IsKeyColumn">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Is Column An Identity Column"
+                          name="IsIdentityColumn">false</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\TF Upsert Destination.Inputs[Input].Columns[LastName]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="LastName"
+                      externalMetadataColumnId="Package\Data Flow Task\TF Upsert Destination.Inputs[Input].ExternalColumns[LastName]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[LastName]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Mapped Column for Destination"
+                          name="DestinationColumn">LastName</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Is Column A Key Column"
+                          name="IsKeyColumn">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Is Column An Identity Column"
+                          name="IsIdentityColumn">false</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\TF Upsert Destination.Inputs[Input].Columns[AddressLine1]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="AddressLine1"
+                      externalMetadataColumnId="Package\Data Flow Task\TF Upsert Destination.Inputs[Input].ExternalColumns[AddressLine1]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[AddressLine1]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Mapped Column for Destination"
+                          name="DestinationColumn">AddressLine1</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Is Column A Key Column"
+                          name="IsKeyColumn">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Is Column An Identity Column"
+                          name="IsIdentityColumn">false</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\TF Upsert Destination.Inputs[Input].Columns[City]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="City"
+                      externalMetadataColumnId="Package\Data Flow Task\TF Upsert Destination.Inputs[Input].ExternalColumns[City]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[City]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Mapped Column for Destination"
+                          name="DestinationColumn">City</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Is Column A Key Column"
+                          name="IsKeyColumn">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Is Column An Identity Column"
+                          name="IsIdentityColumn">false</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\TF Upsert Destination.Inputs[Input].Columns[State]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="State"
+                      externalMetadataColumnId="Package\Data Flow Task\TF Upsert Destination.Inputs[Input].ExternalColumns[State]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[State]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Mapped Column for Destination"
+                          name="DestinationColumn">State</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Is Column A Key Column"
+                          name="IsKeyColumn">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Is Column An Identity Column"
+                          name="IsIdentityColumn">false</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\TF Upsert Destination.Inputs[Input].Columns[PostalCode]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="PostalCode"
+                      externalMetadataColumnId="Package\Data Flow Task\TF Upsert Destination.Inputs[Input].ExternalColumns[PostalCode]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[PostalCode]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Mapped Column for Destination"
+                          name="DestinationColumn">PostalCode</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Is Column A Key Column"
+                          name="IsKeyColumn">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Is Column An Identity Column"
+                          name="IsIdentityColumn">false</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Upsert Destination.Inputs[Input].ExternalColumns[ID]"
+                      dataType="i4"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Upsert Destination.Inputs[Input].ExternalColumns[FirstName]"
+                      dataType="wstr"
+                      length="50"
+                      name="FirstName" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Upsert Destination.Inputs[Input].ExternalColumns[LastName]"
+                      dataType="wstr"
+                      length="50"
+                      name="LastName" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Upsert Destination.Inputs[Input].ExternalColumns[AddressLine1]"
+                      dataType="wstr"
+                      length="50"
+                      name="AddressLine1" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Upsert Destination.Inputs[Input].ExternalColumns[City]"
+                      dataType="wstr"
+                      length="50"
+                      name="City" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Upsert Destination.Inputs[Input].ExternalColumns[State]"
+                      dataType="wstr"
+                      length="2"
+                      name="State" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Upsert Destination.Inputs[Input].ExternalColumns[PostalCode]"
+                      dataType="wstr"
+                      length="10"
+                      name="PostalCode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\TF Upsert Destination.Inputs[Input].ExternalColumns[LastModified]"
+                      dataType="dbTimeStamp"
+                      name="LastModified" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\TF Upsert Destination.Outputs[Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Error Output"
+                  synchronousInputId="Package\Data Flow Task\TF Upsert Destination.Inputs[Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF Upsert Destination.Outputs[Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\TF Upsert Destination.Outputs[Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF Upsert Destination.Outputs[Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\TF Upsert Destination.Outputs[Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\TF Upsert Destination.Outputs[Error Output].Columns[ErrorDescription]"
+                      dataType="wstr"
+                      length="1024"
+                      lineageId="Package\Data Flow Task\TF Upsert Destination.Outputs[Error Output].Columns[ErrorDescription]"
+                      name="ErrorDescription" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Data Flow Task.Paths[OLE DB Source Output]"
+              endId="Package\Data Flow Task\TF Advanced Derived Column Transform.Inputs[TF Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[TF Derived Column Output]"
+              endId="Package\Data Flow Task\TF Upsert Destination.Inputs[Input]"
+              name="TF Derived Column Output"
+              startId="Package\Data Flow Task\TF Advanced Derived Column Transform.Outputs[TF Derived Column Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\RESET DESTINATION TABLE"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{D978349C-CE42-4989-A75A-DEBA3E31E239}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="RESET DESTINATION TABLE"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BE9BE9EC-F7A2-4C92-B784-B2BDE383EF80}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE [dbo].[UpsertDestination]&#xA;GO&#xA;&#xA;INSERT [dbo].[UpsertDestination] ([ID], [FirstName], [LastName], [AddressLine1], [City], [State], [PostalCode]) VALUES (1, N'John', N'Doe', N'1 Main St', N'Charlotte', N'NC', N'28217')&#xA;GO&#xA;INSERT [dbo].[UpsertDestination] ([ID], [FirstName], [LastName], [AddressLine1], [City], [State], [PostalCode]) VALUES (2, N'John', N'Doe', N'2 Main St', N'Charlotte', N'NC', N'28217')&#xA;GO&#xA;INSERT [dbo].[UpsertDestination] ([ID], [FirstName], [LastName], [AddressLine1], [City], [State], [PostalCode]) VALUES (3, N'Jane', N'Doe', N'3 Main St', N'Charlotte', N'NC', N'28217')&#xA;GO&#xA;INSERT [dbo].[UpsertDestination] ([ID], [FirstName], [LastName], [AddressLine1], [City], [State], [PostalCode]) VALUES (4, N'John', N'Doe', N'4 Main St', N'Charlotte', N'NC', N'28217')&#xA;GO&#xA;INSERT [dbo].[UpsertDestination] ([ID], [FirstName], [LastName], [AddressLine1], [City], [State], [PostalCode]) VALUES (5, N'John', N'Doe', N'5 Main St', N'Charlotte', N'NC', N'28217')&#xA;GO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{ED297A02-EB1C-4F67-B4F5-EBF66FFEFCBF}"
+      DTS:From="Package\RESET DESTINATION TABLE"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Data Flow Task" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Data Flow Task"
+          TopLeft="244.5,209.5" />
+        <NodeLayout
+          Size="230,42"
+          Id="Package\RESET DESTINATION TABLE"
+          TopLeft="213.5,98.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="325.25,140.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,69"
+              Start="0,0"
+              End="0,61.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,61.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="186,42"
+          Id="Package\Data Flow Task\TF Upsert Destination"
+          TopLeft="279.5,249.5" />
+        <NodeLayout
+          Size="279,42"
+          Id="Package\Data Flow Task\TF Advanced Derived Column Transform"
+          TopLeft="233.5,144.5" />
+        <NodeLayout
+          Size="157,42"
+          Id="Package\Data Flow Task\OLE DB Source"
+          TopLeft="291.5,41.5" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[OLE DB Source Output]"
+          TopLeft="371.5,83.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,61"
+              Start="0,0"
+              End="0,53.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,53.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[TF Derived Column Output]"
+          TopLeft="372.75,186.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,63"
+              Start="0,0"
+              End="0,55.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,55.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
