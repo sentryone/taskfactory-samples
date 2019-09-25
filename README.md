@@ -14,7 +14,7 @@ Each directory under samples has a Setup package (e.g. 1_SetupUpsertDemoDBs.dtsx
 
 The current list of samples are
 
-### [Upsert](/samples/Upsert)
+### [Upsert Destination](/samples/Upsert)
 	
 	- 1_SetupUpsertDemoDBs.dtsx - Use to setup the Upsert samples
 	- UpsertDestination_BasicSetup.dtsx - A simple upsert configuration
@@ -23,13 +23,13 @@ The current list of samples are
 	- UpsertDestination_InsertOnly.dtsx - Upsert configured for insert only
 	- UpsertDestination_UpdateOnly.dtsx - Upsert configured for update only
 
-### [Compression](/samples/Compression)
+### [Compression Task](/samples/CompressionTask)
 	
 	- 1_SetupCompressionTaskDirectory.dtsx - Use to setup the Compression samples
 	- CompressionTask_Compress.dtsx - Compression task configured to compression files into a zip file
 	- CompressionTask_Decompress.dtsx - Compression task configured to decompress files from a zip file
 
-### [Dynamics CRM](/samples/DynamicsCRM)
+### [Dynamics CRM Components](/samples/DynamicsCRM)
 	
 	- 1_SetupLocalDynamicsDemoDB.dtsx - Use to setup the Dynamics samples
 	- DynamicsSource_BasicDataPull.dtsx - Dynamics Source configured to pull data from Dynamics
@@ -38,7 +38,7 @@ The current list of samples are
 	- DynamicsDestination_Update.dtsx - Dynamics Destination configured to update records
 	- DynamicsDestination_Delete.dtsx - Dynamics Destination configured to delete records
 
-### [REST](/samples/REST)
+### [REST Components](/samples/REST)
 	
 	- 1_SetupLocalRestDirectory.dtsx - Use to setup the REST Samples
 	- RestTask_SaveResponseToVariable.dtsx - REST Task configured to save response to a variable
@@ -49,7 +49,7 @@ The current list of samples are
 	- RestSource_VariableReplacements.dtsx - REST Source configured to use variable replacements in the Endpoint URL, PostBody and Headers
 	- RestDestination_BasicPostData.dtsx - REST Destination configured to post data to an endpoint
 	
-### [Secure FTP](/samples/SecureFTP)
+### [Secure FTP](/samples/SecureFTPTask)
 	
 	- 1_SetupLocalSFTPDirectory.dtsx - Use to setup the SFTP Samples
 	- SecureFTP_CheckIfFileExists.dtsx - SFTP Task configured to check if a file exists on the server
@@ -59,7 +59,7 @@ The current list of samples are
 	- SecureFTP_UploadDirectory.dtsx - SFTP Task configured to upload a local directory to the server
 	- SecureFTP_UploadFileToServer.dtsx - SFTP Task configured to upload a local file to the server
 
-### [Salesforce](/samples/Salesforce)
+### [Salesforce Components](/samples/Salesforce)
 	
 	- 1_SetupLocalSalesForceDB.dtsx - Use to setup the Salesforce samples
 	- SalesforceSource_BasicQuery.dtsx - Salesforce Source configured to pull data with a basic query

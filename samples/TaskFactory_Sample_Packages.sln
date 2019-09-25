@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.779
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "UpsertDestination", "TaskFactory_Sample_Packages\UpsertDestination.dtproj", "{6C6150FB-48B2-4751-AA8A-37C33A250C65}"
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "UpsertDestination", "Upsert\UpsertDestination.dtproj", "{6C6150FB-48B2-4751-AA8A-37C33A250C65}"
 EndProject
 Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "CompressionTask", "CompressionTask\CompressionTask.dtproj", "{69A35806-E321-4C87-BDA1-444E2282EB50}"
 EndProject
