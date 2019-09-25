@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/13/2019 3:15:17 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="FL-VM-QA-WS2016"
+  DTS:CreatorName="PWCORP\cphillips"
+  DTS:DTSID="{E95DF4A0-46C4-4CAB-B9C1-5782EE311283}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1100.123"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="CompressionTask_Compress"
+  DTS:PackageType="5"
+  DTS:VersionBuild="7"
+  DTS:VersionGUID="{7177FCF7-52D2-41D3-A214-1A4B1EC1D627}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[CompressionSourceFile.txt]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{F8A99784-E81E-414E-8B4B-2C671BC04C11}"
+      DTS:ObjectName="CompressionSourceFile.txt">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\Windows\Temp\TaskFactoryDemo\Compression\CompressionSourceFile.txt" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4876971B-1F7D-44D5-9BC8-9C056954CD4B}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DestinationPath">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\Windows\Temp\TaskFactoryDemo\Compression\CompressedByTaskFactory.zip</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B7DB3C5A-DFBC-4B22-8E62-E96B8D78FDC1}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SourceFilePath">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\Windows\Temp\TaskFactoryDemo\Compression</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\TF Compression Task"
+      DTS:CreationName="PW.TaskFactory.CompressionTask"
+      DTS:Description="TF Compression Task"
+      DTS:DTSID="{A9FCFC11-A9DA-43BA-9F19-4CD4C383445B}"
+      DTS:ExecutableType="PW.TaskFactory.CompressionTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="TF Compression Task"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <CompressionTask
+          Encrypt="False"
+          EncryptionKeyStrength="0"
+          IsSourceVariable="True"
+          IncludeSubdirectories="True"
+          IsDestinationVariable="True"
+          CreateSelfExtractingExe="False"
+          CompressionType="Zip"
+          TaskAction="Compress"
+          ZipCompressionLevel="Maximum"
+          Source="User::SourceFilePath"
+          TemporaryDirectory=""
+          Destination="User::DestinationPath"
+          OverwriteDestination="True"
+          CodePage="437">
+          <Password
+            Sensitive="1" xmlns="www.microsoft.com/SqlServer/Dts"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAiqHIgf4PWkqXxAdRkDoZiQAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAADM4MEmOV4gr2aWir5HIlkTAAAAAASAAACgAAAAEAAAACE1KLi900tyQZozq9j7hzcIAAAA6zfKWv33X/YUAAAAVbUnKV4FiNWkTkxtsJa5Z+tbWNo</Password>
+        </CompressionTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="187,42"
+          Id="Package\TF Compression Task"
+          TopLeft="232.5,137.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

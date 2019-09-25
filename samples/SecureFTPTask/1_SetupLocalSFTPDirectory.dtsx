@@ -1,0 +1,1416 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/16/2019 12:32:43 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="FL-VM-QA-WS2016"
+  DTS:CreatorName="PWCORP\cphillips"
+  DTS:DTSID="{D3937BC5-4A85-4B48-9197-E17DBC9B7DEB}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1100.123"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="1_SetupLocalSFTPDirectory"
+  DTS:PackageType="5"
+  DTS:VersionBuild="26"
+  DTS:VersionGUID="{7FD0F18B-381E-46EC-9047-D0C4C215990A}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DownloadFileDestination]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{2A3EE85B-BA16-4CAB-BD9A-C4A7AA2E2306}"
+      DTS:ObjectName="DownloadFileDestination">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="C:\Windows\Temp\TaskFactoryDemo\SFTP\DownloadFileDestination.txt">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="250"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ID"
+              DTS:DTSID="{00143490-3D30-4630-AB62-C35DEC260F4D}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Flat File Connection Manager]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{EB8B365B-60E2-4340-A5BE-1C8521970079}"
+      DTS:ObjectName="Flat File Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="C:\Windows\Temp\TaskFactoryDemo\SFTP\UploadFileSource.txt">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="250"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Value"
+              DTS:DTSID="{11ADD073-5AD3-4684-8BFB-53DCC4CEF4B0}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Flat File Connection Manager 1]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{1D693248-A52B-44BB-9CB5-555C2D309A81}"
+      DTS:ObjectName="Flat File Connection Manager 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="C:\Windows\Temp\TaskFactoryDemo\SFTP\UploadDirectorySource\Subdirectory\SampleDocument3.txt">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="250"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Value"
+              DTS:DTSID="{46F60BB6-3D5F-4607-A4E5-8ED6865CF36B}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SampleDocument1]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{E6291828-50A7-4A8D-AE04-AA8C51D45FC5}"
+      DTS:ObjectName="SampleDocument1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="C:\Windows\Temp\TaskFactoryDemo\SFTP\UploadDirectorySource\Subdirectory\SampleDocument1.txt">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="250"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Value"
+              DTS:DTSID="{442D19E5-92F1-4931-8902-C2D6E2D1936E}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SampleDocument1.txt]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{DF17F2F7-DFAE-4B7B-81B1-3845BEDE2613}"
+      DTS:ObjectName="SampleDocument1.txt">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\Windows\Temp\TaskFactoryDemo\SFTP\UploadDirectorySource\Subdirectory\SampleDocument1.txt" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SampleDocument1.txt 1]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{5CCECAAD-A427-4619-AFB2-0A1ED96D102F}"
+      DTS:ObjectName="SampleDocument1.txt 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:FileUsageType="1"
+          DTS:ConnectionString="C:\Windows\Temp\TaskFactoryDemo\SFTP\UploadDirectorySource\Subdirectory\AnotherSubdirectory\SampleDocument1.txt" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SampleDocument2]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{970B3496-6A74-4D27-889D-EECD195F63F3}"
+      DTS:ObjectName="SampleDocument2">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="C:\Windows\Temp\TaskFactoryDemo\SFTP\UploadDirectorySource\Subdirectory\SampleDocument2.txt">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="250"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Value"
+              DTS:DTSID="{81B28B06-0C06-4749-B45B-C8720C7EA1D0}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SampleDocument2.txt]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{20EF7E14-79AD-48DC-97CB-044913A1490C}"
+      DTS:ObjectName="SampleDocument2.txt">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\Windows\Temp\TaskFactoryDemo\SFTP\UploadDirectorySource\Subdirectory\SampleDocument2.txt" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SampleDocument2.txt 1]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{D2EBA10E-EA90-48B8-AF97-59CD85D6BE55}"
+      DTS:ObjectName="SampleDocument2.txt 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:FileUsageType="1"
+          DTS:ConnectionString="C:\Windows\Temp\TaskFactoryDemo\SFTP\UploadDirectorySource\Subdirectory\AnotherSubdirectory\SampleDocument2.txt" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SampleDocument3.txt]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{F9D40EF8-760C-48B5-9EE3-0AD3DA2376C9}"
+      DTS:ObjectName="SampleDocument3.txt">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\Windows\Temp\TaskFactoryDemo\SFTP\UploadDirectorySource\Subdirectory\SampleDocument3.txt" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SampleDocument3.txt 1]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{879E6820-EF0C-413D-9C67-FD08CC29CAF9}"
+      DTS:ObjectName="SampleDocument3.txt 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:FileUsageType="1"
+          DTS:ConnectionString="C:\Windows\Temp\TaskFactoryDemo\SFTP\UploadDirectorySource\Subdirectory\AnotherSubdirectory\SampleDocument3.txt" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SampleDocumentRoot]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{B5DB91B3-6CB3-4F28-8811-4E76AF5B367B}"
+      DTS:ObjectName="SampleDocumentRoot">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="C:\Windows\Temp\TaskFactoryDemo\SFTP\UploadDirectorySource\SampleDocumentRoot.txt">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="250"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Value"
+              DTS:DTSID="{F19EA4FB-6B7B-4499-A9BF-2BDBD817DD37}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{90548F74-A017-4A94-8A43-F4AE73DA5FE9}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DirectoryPath">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\Windows\Temp\TaskFactoryDemo\SFTP\</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\CREATE LOCAL DIRECTORY"
+      DTS:CreationName="PW.TaskFactory.ExpressionTask"
+      DTS:Description="TF Expression Task"
+      DTS:DTSID="{A24EEAC5-EDDA-4F7C-9104-82BE6A1BB438}"
+      DTS:ExecutableType="PW.TaskFactory.ExpressionTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="CREATE LOCAL DIRECTORY"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExpressionTask
+          VariableColumns="﻿&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&lt;ArrayOfExpressionColumn xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;ExpressionColumn&gt;&lt;Name /&gt;&lt;Precision&gt;18&lt;/Precision&gt;&lt;Scale&gt;4&lt;/Scale&gt;&lt;DataType&gt;DT_STR&lt;/DataType&gt;&lt;Length&gt;50&lt;/Length&gt;&lt;CodePage&gt;1252&lt;/CodePage&gt;&lt;Description /&gt;&lt;ErrorText /&gt;&lt;WarningText /&gt;&lt;ColumnAction&gt;5&lt;/ColumnAction&gt;&lt;SortOrder&gt;0&lt;/SortOrder&gt;&lt;IsOutput&gt;false&lt;/IsOutput&gt;&lt;IsDefault&gt;false&lt;/IsDefault&gt;&lt;Expression&gt;IIF(!DirExists(@[User::DirectoryPath]), DirCreate(@[User::DirectoryPath]))&lt;/Expression&gt;&lt;ExpressionWithPlaceHolders&gt;IIF(!DirExists(User::DirectoryPath), DirCreate(User::DirectoryPath))&lt;/ExpressionWithPlaceHolders&gt;&lt;BufferIndex&gt;0&lt;/BufferIndex&gt;&lt;OutputId&gt;0&lt;/OutputId&gt;&lt;GroupBy&gt;false&lt;/GroupBy&gt;&lt;/ExpressionColumn&gt;&lt;/ArrayOfExpressionColumn&gt;" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\CREATE SOURCE FILE"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{E3252611-0A3B-41EE-848C-7FEBEDD2FE67}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="CREATE SOURCE FILE"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\CREATE SOURCE FILE\CREATE EMPTY DOWNLOAD FILE"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="TF Placeholder Source;SentryOne; Task Factory © 2019 SQL Sentry, LLC; http://www.sentryone.com;support@sentryone.com"
+              description="Acts as placeholder source to generate random or manually input data"
+              name="CREATE EMPTY DOWNLOAD FILE"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  expressionType="Notify"
+                  name="TotalRows">0</property>
+                <property
+                  dataType="System.Boolean"
+                  expressionType="Notify"
+                  name="UseCustomValues">false</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">PW.TaskFactory.PlaceholderSource</property>
+              </properties>
+              <outputs>
+                <output
+                  refId="Package\CREATE SOURCE FILE\CREATE EMPTY DOWNLOAD FILE.Outputs[Output1]"
+                  name="Output1">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CREATE SOURCE FILE\CREATE EMPTY DOWNLOAD FILE.Outputs[Output1].Columns[ID]"
+                      dataType="wstr"
+                      length="250"
+                      lineageId="Package\CREATE SOURCE FILE\CREATE EMPTY DOWNLOAD FILE.Outputs[Output1].Columns[ID]"
+                      name="ID" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\CREATE SOURCE FILE\Flat File Destination 2"
+              componentClassID="Microsoft.FlatFileDestination"
+              contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Destination"
+              localeId="1033"
+              name="Flat File Destination 2">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether the data will overwrite or append to the destination file."
+                  name="Overwrite">true</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the text to write to the destination file before any data is written."
+                  expressionType="Notify"
+                  name="Header" />
+                <property
+                  dataType="System.Boolean"
+                  description="When text qualifier is enabled, specifies whether the text qualifier in the data written to the destination file will be escaped or not."
+                  name="EscapeQualifier">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\CREATE SOURCE FILE\Flat File Destination 2.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DownloadFileDestination]"
+                  connectionManagerRefId="Package.ConnectionManagers[DownloadFileDestination]"
+                  name="FlatFileConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\CREATE SOURCE FILE\Flat File Destination 2.Inputs[Flat File Destination Input]"
+                  hasSideEffects="true"
+                  name="Flat File Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\CREATE SOURCE FILE\Flat File Destination 2.Inputs[Flat File Destination Input].Columns[ID]"
+                      cachedDataType="wstr"
+                      cachedLength="250"
+                      cachedName="ID"
+                      externalMetadataColumnId="Package\CREATE SOURCE FILE\Flat File Destination 2.Inputs[Flat File Destination Input].ExternalColumns[ID]"
+                      lineageId="Package\CREATE SOURCE FILE\CREATE EMPTY DOWNLOAD FILE.Outputs[Output1].Columns[ID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\CREATE SOURCE FILE\Flat File Destination 2.Inputs[Flat File Destination Input].ExternalColumns[ID]"
+                      dataType="wstr"
+                      length="250"
+                      name="ID" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\CREATE SOURCE FILE\Multicast"
+              componentClassID="Microsoft.Multicast"
+              contactInfo="Multicast;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Distributes every input row to every row in one or more outputs. For example, branch your data flow to make a copy of data so that some values can be masked before sharing with external partners."
+              name="Multicast">
+              <inputs>
+                <input
+                  refId="Package\CREATE SOURCE FILE\Multicast.Inputs[Multicast Input 1]"
+                  name="Multicast Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\CREATE SOURCE FILE\Multicast.Outputs[Multicast Output 1]"
+                  deleteOutputOnPathDetached="true"
+                  name="Multicast Output 1"
+                  synchronousInputId="Package\CREATE SOURCE FILE\Multicast.Inputs[Multicast Input 1]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\CREATE SOURCE FILE\Multicast.Outputs[Multicast Output 2]"
+                  deleteOutputOnPathDetached="true"
+                  name="Multicast Output 2"
+                  synchronousInputId="Package\CREATE SOURCE FILE\Multicast.Inputs[Multicast Input 1]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\CREATE SOURCE FILE\Multicast.Outputs[Multicast Output 3]"
+                  deleteOutputOnPathDetached="true"
+                  name="Multicast Output 3"
+                  synchronousInputId="Package\CREATE SOURCE FILE\Multicast.Inputs[Multicast Input 1]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\CREATE SOURCE FILE\Multicast.Outputs[Multicast Output 4]"
+                  deleteOutputOnPathDetached="true"
+                  name="Multicast Output 4"
+                  synchronousInputId="Package\CREATE SOURCE FILE\Multicast.Inputs[Multicast Input 1]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\CREATE SOURCE FILE\Multicast.Outputs[Multicast Output 5]"
+                  deleteOutputOnPathDetached="true"
+                  name="Multicast Output 5"
+                  synchronousInputId="Package\CREATE SOURCE FILE\Multicast.Inputs[Multicast Input 1]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\CREATE SOURCE FILE\Multicast.Outputs[Multicast Output 6]"
+                  dangling="true"
+                  deleteOutputOnPathDetached="true"
+                  name="Multicast Output 6"
+                  synchronousInputId="Package\CREATE SOURCE FILE\Multicast.Inputs[Multicast Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\CREATE SOURCE FILE\SampleDocument1"
+              componentClassID="Microsoft.FlatFileDestination"
+              contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Destination"
+              localeId="1033"
+              name="SampleDocument1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether the data will overwrite or append to the destination file."
+                  name="Overwrite">true</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the text to write to the destination file before any data is written."
+                  expressionType="Notify"
+                  name="Header" />
+                <property
+                  dataType="System.Boolean"
+                  description="When text qualifier is enabled, specifies whether the text qualifier in the data written to the destination file will be escaped or not."
+                  name="EscapeQualifier">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\CREATE SOURCE FILE\SampleDocument1.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SampleDocument1]"
+                  connectionManagerRefId="Package.ConnectionManagers[SampleDocument1]"
+                  name="FlatFileConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\CREATE SOURCE FILE\SampleDocument1.Inputs[Flat File Destination Input]"
+                  hasSideEffects="true"
+                  name="Flat File Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\CREATE SOURCE FILE\SampleDocument1.Inputs[Flat File Destination Input].Columns[Value]"
+                      cachedDataType="wstr"
+                      cachedLength="250"
+                      cachedName="Value"
+                      externalMetadataColumnId="Package\CREATE SOURCE FILE\SampleDocument1.Inputs[Flat File Destination Input].ExternalColumns[Value]"
+                      lineageId="Package\CREATE SOURCE FILE\TF Placeholder Source.Outputs[Output1].Columns[Value]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\CREATE SOURCE FILE\SampleDocument1.Inputs[Flat File Destination Input].ExternalColumns[Value]"
+                      dataType="wstr"
+                      length="250"
+                      name="Value" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\CREATE SOURCE FILE\SampleDocument2"
+              componentClassID="Microsoft.FlatFileDestination"
+              contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Destination"
+              localeId="1033"
+              name="SampleDocument2">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether the data will overwrite or append to the destination file."
+                  name="Overwrite">true</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the text to write to the destination file before any data is written."
+                  expressionType="Notify"
+                  name="Header" />
+                <property
+                  dataType="System.Boolean"
+                  description="When text qualifier is enabled, specifies whether the text qualifier in the data written to the destination file will be escaped or not."
+                  name="EscapeQualifier">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\CREATE SOURCE FILE\SampleDocument2.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SampleDocument2]"
+                  connectionManagerRefId="Package.ConnectionManagers[SampleDocument2]"
+                  name="FlatFileConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\CREATE SOURCE FILE\SampleDocument2.Inputs[Flat File Destination Input]"
+                  hasSideEffects="true"
+                  name="Flat File Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\CREATE SOURCE FILE\SampleDocument2.Inputs[Flat File Destination Input].Columns[Value]"
+                      cachedDataType="wstr"
+                      cachedLength="250"
+                      cachedName="Value"
+                      externalMetadataColumnId="Package\CREATE SOURCE FILE\SampleDocument2.Inputs[Flat File Destination Input].ExternalColumns[Value]"
+                      lineageId="Package\CREATE SOURCE FILE\TF Placeholder Source.Outputs[Output1].Columns[Value]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\CREATE SOURCE FILE\SampleDocument2.Inputs[Flat File Destination Input].ExternalColumns[Value]"
+                      dataType="wstr"
+                      length="250"
+                      name="Value" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\CREATE SOURCE FILE\SampleDocument3"
+              componentClassID="Microsoft.FlatFileDestination"
+              contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Destination"
+              localeId="1033"
+              name="SampleDocument3">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether the data will overwrite or append to the destination file."
+                  name="Overwrite">true</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the text to write to the destination file before any data is written."
+                  expressionType="Notify"
+                  name="Header" />
+                <property
+                  dataType="System.Boolean"
+                  description="When text qualifier is enabled, specifies whether the text qualifier in the data written to the destination file will be escaped or not."
+                  name="EscapeQualifier">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\CREATE SOURCE FILE\SampleDocument3.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Flat File Connection Manager 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[Flat File Connection Manager 1]"
+                  name="FlatFileConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\CREATE SOURCE FILE\SampleDocument3.Inputs[Flat File Destination Input]"
+                  hasSideEffects="true"
+                  name="Flat File Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\CREATE SOURCE FILE\SampleDocument3.Inputs[Flat File Destination Input].Columns[Value]"
+                      cachedDataType="wstr"
+                      cachedLength="250"
+                      cachedName="Value"
+                      externalMetadataColumnId="Package\CREATE SOURCE FILE\SampleDocument3.Inputs[Flat File Destination Input].ExternalColumns[Value]"
+                      lineageId="Package\CREATE SOURCE FILE\TF Placeholder Source.Outputs[Output1].Columns[Value]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\CREATE SOURCE FILE\SampleDocument3.Inputs[Flat File Destination Input].ExternalColumns[Value]"
+                      dataType="wstr"
+                      length="250"
+                      name="Value" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\CREATE SOURCE FILE\SampleDocumentRoot"
+              componentClassID="Microsoft.FlatFileDestination"
+              contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Destination"
+              localeId="1033"
+              name="SampleDocumentRoot">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether the data will overwrite or append to the destination file."
+                  name="Overwrite">true</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the text to write to the destination file before any data is written."
+                  expressionType="Notify"
+                  name="Header" />
+                <property
+                  dataType="System.Boolean"
+                  description="When text qualifier is enabled, specifies whether the text qualifier in the data written to the destination file will be escaped or not."
+                  name="EscapeQualifier">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\CREATE SOURCE FILE\SampleDocumentRoot.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SampleDocumentRoot]"
+                  connectionManagerRefId="Package.ConnectionManagers[SampleDocumentRoot]"
+                  name="FlatFileConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\CREATE SOURCE FILE\SampleDocumentRoot.Inputs[Flat File Destination Input]"
+                  hasSideEffects="true"
+                  name="Flat File Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\CREATE SOURCE FILE\SampleDocumentRoot.Inputs[Flat File Destination Input].Columns[Value]"
+                      cachedDataType="wstr"
+                      cachedLength="250"
+                      cachedName="Value"
+                      externalMetadataColumnId="Package\CREATE SOURCE FILE\SampleDocumentRoot.Inputs[Flat File Destination Input].ExternalColumns[Value]"
+                      lineageId="Package\CREATE SOURCE FILE\TF Placeholder Source.Outputs[Output1].Columns[Value]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\CREATE SOURCE FILE\SampleDocumentRoot.Inputs[Flat File Destination Input].ExternalColumns[Value]"
+                      dataType="wstr"
+                      length="250"
+                      name="Value" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\CREATE SOURCE FILE\TF Advanced Derived Column Transform"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="TF Advanced Derived Column Transform;https://www.sentryone.com"
+              description="Advanced Derived Column Transform"
+              name="TF Advanced Derived Column Transform"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  name="VariableColumns">﻿&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;ArrayOfExpressionColumn xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" /&gt;</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">PW.TaskFactory.AdvancedDerivedColumnTransform</property>
+                <property
+                  dataType="System.Decimal"
+                  name="ErrorsToSkip">0</property>
+                <property
+                  dataType="System.Boolean"
+                  name="LegacyMode">false</property>
+                <property
+                  dataType="System.Decimal"
+                  name="MaxWarnings">10</property>
+                <property
+                  dataType="System.Int32"
+                  name="ErrorOption">0</property>
+                <property
+                  dataType="System.Int32"
+                  name="TurncationOption">0</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\CREATE SOURCE FILE\TF Advanced Derived Column Transform.Inputs[TF Derived Column Input]"
+                  name="TF Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\CREATE SOURCE FILE\TF Advanced Derived Column Transform.Inputs[TF Derived Column Input].Columns[Value]"
+                      cachedDataType="wstr"
+                      cachedLength="250"
+                      cachedName="Value"
+                      lineageId="Package\CREATE SOURCE FILE\TF Placeholder Source.Outputs[Output1].Columns[Value]"
+                      name="Value"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          name="FriendlyExpression">'This is a sample Task Factory Demo document.'</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          name="Expression">"This is a sample Task Factory Demo document."</property>
+                        <property
+                          dataType="System.String"
+                          name="LastError"></property>
+                        <property
+                          dataType="System.Double"
+                          name="EvaluationOrder">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\CREATE SOURCE FILE\TF Advanced Derived Column Transform.Outputs[TF Derived Column Output]"
+                  errorOrTruncationOperation="Error"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="TF Derived Column Output"
+                  synchronousInputId="Package\CREATE SOURCE FILE\TF Advanced Derived Column Transform.Inputs[TF Derived Column Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\CREATE SOURCE FILE\TF Advanced Derived Column Transform.Outputs[Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Error Output"
+                  synchronousInputId="Package\CREATE SOURCE FILE\TF Advanced Derived Column Transform.Inputs[TF Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CREATE SOURCE FILE\TF Advanced Derived Column Transform.Outputs[Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\CREATE SOURCE FILE\TF Advanced Derived Column Transform.Outputs[Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\CREATE SOURCE FILE\TF Advanced Derived Column Transform.Outputs[Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\CREATE SOURCE FILE\TF Advanced Derived Column Transform.Outputs[Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\CREATE SOURCE FILE\TF Placeholder Source"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="TF Placeholder Source;SentryOne; Task Factory © 2019 SQL Sentry, LLC; http://www.sentryone.com;support@sentryone.com"
+              description="Acts as placeholder source to generate random or manually input data"
+              name="TF Placeholder Source"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  expressionType="Notify"
+                  name="TotalRows">1</property>
+                <property
+                  dataType="System.Boolean"
+                  expressionType="Notify"
+                  name="UseCustomValues">false</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">PW.TaskFactory.PlaceholderSource</property>
+              </properties>
+              <outputs>
+                <output
+                  refId="Package\CREATE SOURCE FILE\TF Placeholder Source.Outputs[Output1]"
+                  name="Output1">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CREATE SOURCE FILE\TF Placeholder Source.Outputs[Output1].Columns[Value]"
+                      dataType="wstr"
+                      length="250"
+                      lineageId="Package\CREATE SOURCE FILE\TF Placeholder Source.Outputs[Output1].Columns[Value]"
+                      name="Value" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\CREATE SOURCE FILE\UPLOAD FILE SOURCE"
+              componentClassID="Microsoft.FlatFileDestination"
+              contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Destination"
+              localeId="1033"
+              name="UPLOAD FILE SOURCE">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether the data will overwrite or append to the destination file."
+                  name="Overwrite">true</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the text to write to the destination file before any data is written."
+                  expressionType="Notify"
+                  name="Header" />
+                <property
+                  dataType="System.Boolean"
+                  description="When text qualifier is enabled, specifies whether the text qualifier in the data written to the destination file will be escaped or not."
+                  name="EscapeQualifier">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\CREATE SOURCE FILE\UPLOAD FILE SOURCE.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Flat File Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Flat File Connection Manager]"
+                  name="FlatFileConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\CREATE SOURCE FILE\UPLOAD FILE SOURCE.Inputs[Flat File Destination Input]"
+                  hasSideEffects="true"
+                  name="Flat File Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\CREATE SOURCE FILE\UPLOAD FILE SOURCE.Inputs[Flat File Destination Input].Columns[Value]"
+                      cachedDataType="wstr"
+                      cachedLength="250"
+                      cachedName="Value"
+                      externalMetadataColumnId="Package\CREATE SOURCE FILE\UPLOAD FILE SOURCE.Inputs[Flat File Destination Input].ExternalColumns[Value]"
+                      lineageId="Package\CREATE SOURCE FILE\TF Placeholder Source.Outputs[Output1].Columns[Value]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\CREATE SOURCE FILE\UPLOAD FILE SOURCE.Inputs[Flat File Destination Input].ExternalColumns[Value]"
+                      dataType="wstr"
+                      length="250"
+                      name="Value" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\CREATE SOURCE FILE.Paths[Multicast Output 1]"
+              endId="Package\CREATE SOURCE FILE\UPLOAD FILE SOURCE.Inputs[Flat File Destination Input]"
+              name="Multicast Output 1"
+              startId="Package\CREATE SOURCE FILE\Multicast.Outputs[Multicast Output 1]" />
+            <path
+              refId="Package\CREATE SOURCE FILE.Paths[Multicast Output 2]"
+              endId="Package\CREATE SOURCE FILE\SampleDocumentRoot.Inputs[Flat File Destination Input]"
+              name="Multicast Output 2"
+              startId="Package\CREATE SOURCE FILE\Multicast.Outputs[Multicast Output 2]" />
+            <path
+              refId="Package\CREATE SOURCE FILE.Paths[Multicast Output 3]"
+              endId="Package\CREATE SOURCE FILE\SampleDocument1.Inputs[Flat File Destination Input]"
+              name="Multicast Output 3"
+              startId="Package\CREATE SOURCE FILE\Multicast.Outputs[Multicast Output 3]" />
+            <path
+              refId="Package\CREATE SOURCE FILE.Paths[Multicast Output 4]"
+              endId="Package\CREATE SOURCE FILE\SampleDocument2.Inputs[Flat File Destination Input]"
+              name="Multicast Output 4"
+              startId="Package\CREATE SOURCE FILE\Multicast.Outputs[Multicast Output 4]" />
+            <path
+              refId="Package\CREATE SOURCE FILE.Paths[Multicast Output 5]"
+              endId="Package\CREATE SOURCE FILE\SampleDocument3.Inputs[Flat File Destination Input]"
+              name="Multicast Output 5"
+              startId="Package\CREATE SOURCE FILE\Multicast.Outputs[Multicast Output 5]" />
+            <path
+              refId="Package\CREATE SOURCE FILE.Paths[Output1]"
+              endId="Package\CREATE SOURCE FILE\TF Advanced Derived Column Transform.Inputs[TF Derived Column Input]"
+              name="Output1"
+              startId="Package\CREATE SOURCE FILE\TF Placeholder Source.Outputs[Output1]" />
+            <path
+              refId="Package\CREATE SOURCE FILE.Paths[Output11]"
+              endId="Package\CREATE SOURCE FILE\Flat File Destination 2.Inputs[Flat File Destination Input]"
+              name="Output1"
+              startId="Package\CREATE SOURCE FILE\CREATE EMPTY DOWNLOAD FILE.Outputs[Output1]" />
+            <path
+              refId="Package\CREATE SOURCE FILE.Paths[TF Derived Column Output]"
+              endId="Package\CREATE SOURCE FILE\Multicast.Inputs[Multicast Input 1]"
+              name="TF Derived Column Output"
+              startId="Package\CREATE SOURCE FILE\TF Advanced Derived Column Transform.Outputs[TF Derived Column Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\File System Task"
+      DTS:CreationName="Microsoft.FileSystemTask"
+      DTS:Description="File System Task"
+      DTS:DTSID="{7FB0603F-FEDB-4FE1-AB54-3EA6A0087671}"
+      DTS:ExecutableType="Microsoft.FileSystemTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="File System Task"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <FileSystemData
+          TaskSourcePath="{DF17F2F7-DFAE-4B7B-81B1-3845BEDE2613}"
+          TaskDestinationPath="{5CCECAAD-A427-4619-AFB2-0A1ED96D102F}" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\File System Task 1"
+      DTS:CreationName="Microsoft.FileSystemTask"
+      DTS:Description="File System Task"
+      DTS:DTSID="{029636CD-564D-4EDE-A8AB-5D7DB9F83687}"
+      DTS:ExecutableType="Microsoft.FileSystemTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="File System Task 1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <FileSystemData
+          TaskSourcePath="{20EF7E14-79AD-48DC-97CB-044913A1490C}"
+          TaskDestinationPath="{D2EBA10E-EA90-48B8-AF97-59CD85D6BE55}" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\File System Task 2"
+      DTS:CreationName="Microsoft.FileSystemTask"
+      DTS:Description="File System Task"
+      DTS:DTSID="{D21D6434-9BD5-4790-AAD2-E69C078CA6CE}"
+      DTS:ExecutableType="Microsoft.FileSystemTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="File System Task 2"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <FileSystemData
+          TaskSourcePath="{F9D40EF8-760C-48B5-9EE3-0AD3DA2376C9}"
+          TaskDestinationPath="{879E6820-EF0C-413D-9C67-FD08CC29CAF9}" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\TF Advanced Execute Process Task"
+      DTS:CreationName="PW.TaskFactory.AdvancedExecuteProcessTask"
+      DTS:Description="TF Advanced Execute Process Task"
+      DTS:DTSID="{9A16A72B-3E5D-4371-845A-280940210A94}"
+      DTS:ExecutableType="PW.TaskFactory.AdvancedExecuteProcessTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="TF Advanced Execute Process Task"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <AdvancedExecuteProcessTask
+          ProcessSteps="﻿&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&lt;ArrayOfProcessStep xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;ProcessStep&gt;&lt;StepName&gt;Create Blank UploadFileSource&lt;/StepName&gt;&lt;StepCommand&gt;type nul &amp;gt; C:\Windows\Temp\TaskFactoryDemo\SFTP\UploadFileSource.txt&lt;/StepCommand&gt;&lt;StepDescription /&gt;&lt;StepOrder&gt;5&lt;/StepOrder&gt;&lt;SuccessExitCode&gt;0&lt;/SuccessExitCode&gt;&lt;CreateBatchFile&gt;false&lt;/CreateBatchFile&gt;&lt;CommandTimeout&gt;0&lt;/CommandTimeout&gt;&lt;WindowStyle&gt;Hidden&lt;/WindowStyle&gt;&lt;StandardOutputVariable /&gt;&lt;ErrorOutputVariable /&gt;&lt;/ProcessStep&gt;&lt;ProcessStep&gt;&lt;StepName&gt;Create Blank DownloadFileDestination&lt;/StepName&gt;&lt;StepCommand&gt;type nul &amp;gt; C:\Windows\Temp\TaskFactoryDemo\SFTP\DownloadFileDestination.txt&lt;/StepCommand&gt;&lt;StepDescription /&gt;&lt;StepOrder&gt;6&lt;/StepOrder&gt;&lt;SuccessExitCode&gt;0&lt;/SuccessExitCode&gt;&lt;CreateBatchFile&gt;false&lt;/CreateBatchFile&gt;&lt;CommandTimeout&gt;0&lt;/CommandTimeout&gt;&lt;WindowStyle&gt;Hidden&lt;/WindowStyle&gt;&lt;StandardOutputVariable /&gt;&lt;ErrorOutputVariable /&gt;&lt;/ProcessStep&gt;&lt;ProcessStep&gt;&lt;StepName&gt;Create SampleDocumentRoot&lt;/StepName&gt;&lt;StepCommand&gt;type nul &amp;gt; C:\Windows\Temp\TaskFactoryDemo\SFTP\UploadDirectorySource\SampleDocumentRoot.txt&lt;/StepCommand&gt;&lt;StepDescription /&gt;&lt;StepOrder&gt;7&lt;/StepOrder&gt;&lt;SuccessExitCode&gt;0&lt;/SuccessExitCode&gt;&lt;CreateBatchFile&gt;false&lt;/CreateBatchFile&gt;&lt;CommandTimeout&gt;0&lt;/CommandTimeout&gt;&lt;WindowStyle&gt;Hidden&lt;/WindowStyle&gt;&lt;StandardOutputVariable /&gt;&lt;ErrorOutputVariable /&gt;&lt;/ProcessStep&gt;&lt;ProcessStep&gt;&lt;StepName&gt;Create SampleDocument1&lt;/StepName&gt;&lt;StepCommand&gt;type nul &amp;gt; C:\Windows\Temp\TaskFactoryDemo\SFTP\UploadDirectorySource\Subdirectory\SampleDocument1.txt&lt;/StepCommand&gt;&lt;StepDescription /&gt;&lt;StepOrder&gt;8&lt;/StepOrder&gt;&lt;SuccessExitCode&gt;0&lt;/SuccessExitCode&gt;&lt;CreateBatchFile&gt;false&lt;/CreateBatchFile&gt;&lt;CommandTimeout&gt;0&lt;/CommandTimeout&gt;&lt;WindowStyle&gt;Hidden&lt;/WindowStyle&gt;&lt;StandardOutputVariable /&gt;&lt;ErrorOutputVariable /&gt;&lt;/ProcessStep&gt;&lt;ProcessStep&gt;&lt;StepName&gt;Create SampleDocument2&lt;/StepName&gt;&lt;StepCommand&gt;type nul &amp;gt; C:\Windows\Temp\TaskFactoryDemo\SFTP\UploadDirectorySource\Subdirectory\SampleDocument2.txt&lt;/StepCommand&gt;&lt;StepDescription /&gt;&lt;StepOrder&gt;9&lt;/StepOrder&gt;&lt;SuccessExitCode&gt;0&lt;/SuccessExitCode&gt;&lt;CreateBatchFile&gt;false&lt;/CreateBatchFile&gt;&lt;CommandTimeout&gt;0&lt;/CommandTimeout&gt;&lt;WindowStyle&gt;Hidden&lt;/WindowStyle&gt;&lt;StandardOutputVariable /&gt;&lt;ErrorOutputVariable /&gt;&lt;/ProcessStep&gt;&lt;ProcessStep&gt;&lt;StepName&gt;Create SampleDocument3&lt;/StepName&gt;&lt;StepCommand&gt;type nul &amp;gt; C:\Windows\Temp\TaskFactoryDemo\SFTP\UploadDirectorySource\Subdirectory\SampleDocument3.txt&lt;/StepCommand&gt;&lt;StepDescription /&gt;&lt;StepOrder&gt;10&lt;/StepOrder&gt;&lt;SuccessExitCode&gt;0&lt;/SuccessExitCode&gt;&lt;CreateBatchFile&gt;false&lt;/CreateBatchFile&gt;&lt;CommandTimeout&gt;0&lt;/CommandTimeout&gt;&lt;WindowStyle&gt;Hidden&lt;/WindowStyle&gt;&lt;StandardOutputVariable /&gt;&lt;ErrorOutputVariable /&gt;&lt;/ProcessStep&gt;&lt;ProcessStep&gt;&lt;StepName&gt;Create Download Directory&lt;/StepName&gt;&lt;StepCommand&gt;mkdir C:\Windows\Temp\TaskFactoryDemo\SFTP\DownloadDirectoryDestination&lt;/StepCommand&gt;&lt;StepDescription /&gt;&lt;StepOrder&gt;1&lt;/StepOrder&gt;&lt;SuccessExitCode&gt;0&lt;/SuccessExitCode&gt;&lt;CreateBatchFile&gt;false&lt;/CreateBatchFile&gt;&lt;CommandTimeout&gt;0&lt;/CommandTimeout&gt;&lt;WindowStyle&gt;Hidden&lt;/WindowStyle&gt;&lt;StandardOutputVariable /&gt;&lt;ErrorOutputVariable /&gt;&lt;/ProcessStep&gt;&lt;ProcessStep&gt;&lt;StepName&gt;Create Upload Directory&lt;/StepName&gt;&lt;StepCommand&gt;mkdir C:\Windows\Temp\TaskFactoryDemo\SFTP\UploadDirectorySource&lt;/StepCommand&gt;&lt;StepDescription /&gt;&lt;StepOrder&gt;2&lt;/StepOrder&gt;&lt;SuccessExitCode&gt;0&lt;/SuccessExitCode&gt;&lt;CreateBatchFile&gt;false&lt;/CreateBatchFile&gt;&lt;CommandTimeout&gt;0&lt;/CommandTimeout&gt;&lt;WindowStyle&gt;Hidden&lt;/WindowStyle&gt;&lt;StandardOutputVariable /&gt;&lt;ErrorOutputVariable /&gt;&lt;/ProcessStep&gt;&lt;ProcessStep&gt;&lt;StepName&gt;Create Subdirectory&lt;/StepName&gt;&lt;StepCommand&gt;mkdir C:\Windows\Temp\TaskFactoryDemo\SFTP\UploadDirectorySource\Subdirectory&lt;/StepCommand&gt;&lt;StepDescription /&gt;&lt;StepOrder&gt;3&lt;/StepOrder&gt;&lt;SuccessExitCode&gt;0&lt;/SuccessExitCode&gt;&lt;CreateBatchFile&gt;false&lt;/CreateBatchFile&gt;&lt;CommandTimeout&gt;0&lt;/CommandTimeout&gt;&lt;WindowStyle&gt;Hidden&lt;/WindowStyle&gt;&lt;StandardOutputVariable /&gt;&lt;ErrorOutputVariable /&gt;&lt;/ProcessStep&gt;&lt;ProcessStep&gt;&lt;StepName&gt;Create Another Subdirectory&lt;/StepName&gt;&lt;StepCommand&gt;mkdir C:\Windows\Temp\TaskFactoryDemo\SFTP\UploadDirectorySource\Subdirectory\AnotherSubdirectory&lt;/StepCommand&gt;&lt;StepDescription /&gt;&lt;StepOrder&gt;4&lt;/StepOrder&gt;&lt;SuccessExitCode&gt;0&lt;/SuccessExitCode&gt;&lt;CreateBatchFile&gt;true&lt;/CreateBatchFile&gt;&lt;CommandTimeout&gt;0&lt;/CommandTimeout&gt;&lt;WindowStyle&gt;Hidden&lt;/WindowStyle&gt;&lt;StandardOutputVariable /&gt;&lt;ErrorOutputVariable /&gt;&lt;/ProcessStep&gt;&lt;/ArrayOfProcessStep&gt;"
+          FailTaskIfStepUnsuccessful="True"
+          RunCommandDirectly="False" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{5D924935-99D5-4A26-95F9-7D4ECAFC26C7}"
+      DTS:From="Package\CREATE SOURCE FILE"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\File System Task" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{E744D337-58E1-4F7A-AE62-D74B9B595C07}"
+      DTS:From="Package\File System Task"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\File System Task 1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{5A809FC6-0E25-4569-A325-1BC7593AC48E}"
+      DTS:From="Package\File System Task 1"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\File System Task 2" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{299D41ED-5B88-45AE-984D-E4C0F74553FC}"
+      DTS:From="Package\TF Advanced Execute Process Task"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\CREATE SOURCE FILE" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{7B02EE0F-C697-4660-A5BD-5CFF7573B752}"
+      DTS:From="Package\CREATE LOCAL DIRECTORY"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\TF Advanced Execute Process Task" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="230,42"
+          Id="Package\CREATE LOCAL DIRECTORY"
+          TopLeft="211.5,25.5" />
+        <NodeLayout
+          Size="200,42"
+          Id="Package\CREATE SOURCE FILE"
+          TopLeft="228.5,177.5" />
+        <NodeLayout
+          Size="163,42"
+          Id="Package\File System Task"
+          TopLeft="239.5,245.5" />
+        <NodeLayout
+          Size="172,42"
+          Id="Package\File System Task 1"
+          TopLeft="237.5,313.5" />
+        <NodeLayout
+          Size="172,42"
+          Id="Package\File System Task 2"
+          TopLeft="239.5,384.5" />
+        <NodeLayout
+          Size="256,42"
+          Id="Package\TF Advanced Execute Process Task"
+          TopLeft="204,106" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="324.75,219.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,26"
+              Start="0,0"
+              End="0,18.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="322.25,287.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,26"
+              Start="0,0"
+              End="0,18.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="324.5,355.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,29"
+              Start="0,0"
+              End="0,21.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="330.25,148">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,29.5"
+              Start="0,0"
+              End="0,22">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="329.25,67.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,38.5"
+              Start="0,0"
+              End="0,31">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\CREATE SOURCE FILE">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="123,42"
+          Id="Package\CREATE SOURCE FILE\Multicast"
+          TopLeft="313.5,198.5" />
+        <NodeLayout
+          Size="173,42"
+          Id="Package\CREATE SOURCE FILE\SampleDocument2"
+          TopLeft="384.5,332.5" />
+        <NodeLayout
+          Size="190,42"
+          Id="Package\CREATE SOURCE FILE\SampleDocumentRoot"
+          TopLeft="481.5,200.5" />
+        <NodeLayout
+          Size="200,42"
+          Id="Package\CREATE SOURCE FILE\UPLOAD FILE SOURCE"
+          TopLeft="41.5,201.5" />
+        <NodeLayout
+          Size="191,42"
+          Id="Package\CREATE SOURCE FILE\TF Placeholder Source"
+          TopLeft="276.5,31.5" />
+        <NodeLayout
+          Size="185,42"
+          Id="Package\CREATE SOURCE FILE\Flat File Destination 2"
+          TopLeft="746.5,109.5" />
+        <NodeLayout
+          Size="173,42"
+          Id="Package\CREATE SOURCE FILE\SampleDocument1"
+          TopLeft="487.5,273.5" />
+        <NodeLayout
+          Size="173,42"
+          Id="Package\CREATE SOURCE FILE\SampleDocument3"
+          TopLeft="262.5,393.5" />
+        <NodeLayout
+          Size="279,42"
+          Id="Package\CREATE SOURCE FILE\TF Advanced Derived Column Transform"
+          TopLeft="235.5,112.5" />
+        <NodeLayout
+          Size="258,42"
+          Id="Package\CREATE SOURCE FILE\CREATE EMPTY DOWNLOAD FILE"
+          TopLeft="715.5,29.5" />
+        <EdgeLayout
+          Id="Package\CREATE SOURCE FILE.Paths[TF Derived Column Output]"
+          TopLeft="375,154.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,44"
+              Start="0,0"
+              End="0,36.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\CREATE SOURCE FILE.Paths[Output11]"
+          TopLeft="841.75,71.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,38"
+              Start="0,0"
+              End="0,30.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\CREATE SOURCE FILE.Paths[Output1]"
+          TopLeft="373.5,73.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,39"
+              Start="0,0"
+              End="0,31.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\CREATE SOURCE FILE.Paths[Multicast Output 5]"
+          TopLeft="347.625,240.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,153"
+              Start="0,0"
+              End="0,145.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,145.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\CREATE SOURCE FILE.Paths[Multicast Output 4]"
+          TopLeft="355.833333333333,240.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="115.166666666667,92"
+              Start="0,0"
+              End="115.166666666667,84.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.5088282504013" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,33.5088282504013"
+                    Point2="0,37.5088282504013"
+                    Point3="4,37.5088282504013" />
+                  <mssgle:LineSegment
+                    End="111.166666666667,37.5088282504013" />
+                  <mssgle:CubicBezierSegment
+                    Point1="111.166666666667,37.5088282504013"
+                    Point2="115.166666666667,37.5088282504013"
+                    Point3="115.166666666667,41.5088282504013" />
+                  <mssgle:LineSegment
+                    End="115.166666666667,84.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\CREATE SOURCE FILE.Paths[Multicast Output 3]"
+          TopLeft="375,240.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="199,33"
+              Start="0,0"
+              End="199,25.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12.5"
+                    Point2="0,16.5"
+                    Point3="4,16.5" />
+                  <mssgle:LineSegment
+                    End="195,16.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="195,16.5"
+                    Point2="199,16.5"
+                    Point3="199,20.5" />
+                  <mssgle:LineSegment
+                    End="199,25.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\CREATE SOURCE FILE.Paths[Multicast Output 2]"
+          TopLeft="436.5,220.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="45,0"
+              Start="0,0"
+              End="37.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="37.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\CREATE SOURCE FILE.Paths[Multicast Output 1]"
+          TopLeft="313.5,221">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-72,0"
+              Start="0,0"
+              End="-64.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-64.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,119 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/16/2019 12:32:43 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="FL-VM-QA-WS2016"
+  DTS:CreatorName="PWCORP\cphillips"
+  DTS:DTSID="{012098C6-2B98-453B-9370-BC723A9A9C51}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1100.123"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="1_SetupLocalRestDirectory"
+  DTS:PackageType="5"
+  DTS:VersionBuild="26"
+  DTS:VersionGUID="{9DD5B3D0-646B-4CA4-AFB2-2E3AA83D79D2}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{FFF4F550-ADD0-4EFC-B99A-53BA4CB50AF1}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DirectoryPath">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\Windows\Temp\TaskFactoryDemo\REST\</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\CREATE LOCAL DIRECTORY"
+      DTS:CreationName="PW.TaskFactory.ExpressionTask"
+      DTS:Description="TF Expression Task"
+      DTS:DTSID="{7A7C163F-93EE-4337-8747-70B6FC549DF4}"
+      DTS:ExecutableType="PW.TaskFactory.ExpressionTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="CREATE LOCAL DIRECTORY"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExpressionTask
+          VariableColumns="﻿&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&lt;ArrayOfExpressionColumn xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;ExpressionColumn&gt;&lt;Name /&gt;&lt;Precision&gt;18&lt;/Precision&gt;&lt;Scale&gt;4&lt;/Scale&gt;&lt;DataType&gt;DT_STR&lt;/DataType&gt;&lt;Length&gt;50&lt;/Length&gt;&lt;CodePage&gt;1252&lt;/CodePage&gt;&lt;Description /&gt;&lt;ErrorText /&gt;&lt;WarningText /&gt;&lt;ColumnAction&gt;5&lt;/ColumnAction&gt;&lt;SortOrder&gt;0&lt;/SortOrder&gt;&lt;IsOutput&gt;false&lt;/IsOutput&gt;&lt;IsDefault&gt;false&lt;/IsDefault&gt;&lt;Expression&gt;IIF(!DirExists(@[User::DirectoryPath]), DirCreate(@[User::DirectoryPath]))&lt;/Expression&gt;&lt;ExpressionWithPlaceHolders&gt;IIF(!DirExists(User::DirectoryPath), DirCreate(User::DirectoryPath))&lt;/ExpressionWithPlaceHolders&gt;&lt;BufferIndex&gt;0&lt;/BufferIndex&gt;&lt;OutputId&gt;0&lt;/OutputId&gt;&lt;GroupBy&gt;false&lt;/GroupBy&gt;&lt;/ExpressionColumn&gt;&lt;/ArrayOfExpressionColumn&gt;" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\TF Advanced Execute Process Task"
+      DTS:CreationName="PW.TaskFactory.AdvancedExecuteProcessTask"
+      DTS:Description="TF Advanced Execute Process Task"
+      DTS:DTSID="{AF42F00D-A62E-4620-BC9E-97BDF43F8419}"
+      DTS:ExecutableType="PW.TaskFactory.AdvancedExecuteProcessTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="TF Advanced Execute Process Task"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <AdvancedExecuteProcessTask
+          ProcessSteps="﻿&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&lt;ArrayOfProcessStep xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;ProcessStep&gt;&lt;StepName&gt;Create SampleDocument3&lt;/StepName&gt;&lt;StepCommand&gt;type nul &amp;gt; C:\Windows\Temp\TaskFactoryDemo\REST\RestTaskResponse.xml&lt;/StepCommand&gt;&lt;StepDescription /&gt;&lt;StepOrder&gt;10&lt;/StepOrder&gt;&lt;SuccessExitCode&gt;0&lt;/SuccessExitCode&gt;&lt;CreateBatchFile&gt;false&lt;/CreateBatchFile&gt;&lt;CommandTimeout&gt;0&lt;/CommandTimeout&gt;&lt;WindowStyle&gt;Hidden&lt;/WindowStyle&gt;&lt;StandardOutputVariable /&gt;&lt;ErrorOutputVariable /&gt;&lt;/ProcessStep&gt;&lt;/ArrayOfProcessStep&gt;"
+          FailTaskIfStepUnsuccessful="True"
+          RunCommandDirectly="False" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{86CF5DC8-6125-40B7-926B-CEDFD770E39E}"
+      DTS:From="Package\CREATE LOCAL DIRECTORY"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\TF Advanced Execute Process Task" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="230,42"
+          Id="Package\CREATE LOCAL DIRECTORY"
+          TopLeft="70.5,149.5" />
+        <NodeLayout
+          Size="256,42"
+          Id="Package\TF Advanced Execute Process Task"
+          TopLeft="63,247" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="188.25,191.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,55.5"
+              Start="0,0"
+              End="0,48">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,48" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
