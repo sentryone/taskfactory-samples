@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Settings>
+  <AuthorizationRequestUrl>https://www.sandbox.paypal.com/webapps/auth/protocol/openidconnect/v1/authorize?client_id={ApiKey}&amp;response_type=code&amp;scope=profile+email+address+phone+https://uri.paypal.com/services/paypalattributes&amp;redirect_uri=http://pragmaticworks.com</AuthorizationRequestUrl>
+  <AuthorizationRequestMethod>POST</AuthorizationRequestMethod>
+  <AuthorizationReturnUrl>http://localhost</AuthorizationReturnUrl>
+  <GrantCodeQueryStringParameter>code</GrantCodeQueryStringParameter>
+  <AccessTokenRequestUrl>https://api.sandbox.paypal.com/v1/identity/openidconnect/tokenservice</AccessTokenRequestUrl>
+  <AccessTokenValidationUrl></AccessTokenValidationUrl>
+  <AccessTokenRequestUrlQueryParameters>client_id={ApiKey}&amp;client_secret={ApiSecret}&amp;grant_type=authorization_code&amp;code={GrantCode}&amp;redirect_uri=http://pragmaticworks.com</AccessTokenRequestUrlQueryParameters>
+  <AccessTokenRequestMethod>POST</AccessTokenRequestMethod>
+  <AccessTokenJsonToken>access_token</AccessTokenJsonToken>
+  <AccessTokenExpiresInJsonToken>expires_in</AccessTokenExpiresInJsonToken>
+  <AccessTokenExpiresInMode>seconds</AccessTokenExpiresInMode>
+  <IsBearerToken>true</IsBearerToken>
+  <RefreshTokenRequestUrl>https://api.sandbox.paypal.com/v1/identity/openidconnect/tokenservice</RefreshTokenRequestUrl>
+  <RefreshTokenRequestUrlQueryParameters>grant_type=refresh_token&amp;client_id={ApiKey}&amp;client_secret={ApiSecret}&amp;refresh_token={RefreshToken}</RefreshTokenRequestUrlQueryParameters>
+  <RefreshTokenJsonPath>refresh_token</RefreshTokenJsonPath>  
+</Settings>

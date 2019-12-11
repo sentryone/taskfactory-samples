@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Settings>
+  <AuthorizationRequestUrl>https://api.citrixonline.com/oauth/authorize?client_id={ApiKey}</AuthorizationRequestUrl>
+  <AuthorizationRequestMethod>POST</AuthorizationRequestMethod>
+  <AuthorizationReturnUrl>http://localhost</AuthorizationReturnUrl>
+  <GrantCodeQueryStringParameter>code</GrantCodeQueryStringParameter>
+  <AccessTokenRequestUrl>https://api.citrixonline.com/oauth/access_token</AccessTokenRequestUrl>
+  <AccessTokenValidationUrl></AccessTokenValidationUrl>
+  <AccessTokenRequestUrlQueryParameters>grant_type=authorization_code&amp;code={GrantCode}&amp;client_id={ApiKey}</AccessTokenRequestUrlQueryParameters>
+  <AccessTokenRequestMethod>POST</AccessTokenRequestMethod>
+  <AccessTokenJsonToken>access_token</AccessTokenJsonToken>
+  <AccessTokenExpiresInJsonToken>expires_in</AccessTokenExpiresInJsonToken>
+  <AccessTokenExpiresInMode>seconds</AccessTokenExpiresInMode>
+</Settings>
