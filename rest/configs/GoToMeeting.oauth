@@ -2,7 +2,7 @@
 <Settings>
   <AuthorizationRequestUrl>https://api.citrixonline.com/oauth/authorize?client_id={ApiKey}</AuthorizationRequestUrl>
   <AuthorizationRequestMethod>POST</AuthorizationRequestMethod>
-  <AuthorizationReturnUrl>http://localhost</AuthorizationReturnUrl>
+  <AuthorizationReturnUrl>http://localhost:55568/</AuthorizationReturnUrl>
   <GrantCodeQueryStringParameter>code</GrantCodeQueryStringParameter>
   <AccessTokenRequestUrl>https://api.citrixonline.com/oauth/access_token</AccessTokenRequestUrl>
   <AccessTokenValidationUrl></AccessTokenValidationUrl>
