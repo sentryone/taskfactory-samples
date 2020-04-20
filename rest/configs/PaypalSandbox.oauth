@@ -6,7 +6,7 @@
   <GrantCodeQueryStringParameter>code</GrantCodeQueryStringParameter>
   <AccessTokenRequestUrl>https://api.sandbox.paypal.com/v1/identity/openidconnect/tokenservice</AccessTokenRequestUrl>
   <AccessTokenValidationUrl></AccessTokenValidationUrl>
-  <AccessTokenRequestUrlQueryParameters>client_id={ApiKey}&amp;client_secret={ApiSecret}&amp;grant_type=authorization_code&amp;code={GrantCode}&amp;redirect_uri=http://pragmaticworks.com</AccessTokenRequestUrlQueryParameters>
+  <AccessTokenRequestUrlQueryParameters>client_id={ApiKey}&amp;client_secret={ApiSecret}&amp;grant_type=authorization_code&amp;code={GrantCode}&amp;redirect_uri=http://localhost:55568/</AccessTokenRequestUrlQueryParameters>
   <AccessTokenRequestMethod>POST</AccessTokenRequestMethod>
   <AccessTokenJsonToken>access_token</AccessTokenJsonToken>
   <AccessTokenExpiresInJsonToken>expires_in</AccessTokenExpiresInJsonToken>
