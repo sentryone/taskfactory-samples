@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Settings>
-  <AuthorizationRequestUrl>https://www.sandbox.paypal.com/webapps/auth/protocol/openidconnect/v1/authorize?client_id={ApiKey}&amp;response_type=code&amp;scope=profile+email+address+phone+https://uri.paypal.com/services/paypalattributes&amp;redirect_uri=http://pragmaticworks.com</AuthorizationRequestUrl>
+  <AuthorizationRequestUrl>https://www.sandbox.paypal.com/webapps/auth/protocol/openidconnect/v1/authorize?client_id={ApiKey}&amp;response_type=code&amp;scope=profile+email+address+phone+https://uri.paypal.com/services/paypalattributes&amp;redirect_uri=http://localhost:55568/</AuthorizationRequestUrl>
   <AuthorizationRequestMethod>POST</AuthorizationRequestMethod>
   <AuthorizationReturnUrl>http://localhost</AuthorizationReturnUrl>
   <GrantCodeQueryStringParameter>code</GrantCodeQueryStringParameter>
