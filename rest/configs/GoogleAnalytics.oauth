@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Settings>
-  <AuthorizationRequestUrl>https://accounts.google.com/o/oauth2/auth?approval_prompt=force&amp;access_type=offline&amp;state=security_token&amp;client_id={ApiKey}&amp;scope=profile%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fanalytics.readonly&amp;response_type=code&amp;redirect_uri=http%3A%2F%2Flocalhost.com</AuthorizationRequestUrl>
+  <AuthorizationRequestUrl>https://accounts.google.com/o/oauth2/auth?approval_prompt=force&amp;access_type=offline&amp;state=security_token&amp;client_id={ApiKey}&amp;scope=profile%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fanalytics.readonly&amp;response_type=code&amp;redirect_uri=http://localhost:55568/</AuthorizationRequestUrl>
   <AuthorizationRequestMethod>POST</AuthorizationRequestMethod>
-  <AuthorizationReturnUrl>http://localhost</AuthorizationReturnUrl>
+  <AuthorizationReturnUrl>http://localhost:55568/</AuthorizationReturnUrl>
   <GrantCodeQueryStringParameter>code</GrantCodeQueryStringParameter>
   <AccessTokenRequestUrl>https://www.googleapis.com/oauth2/v3/token</AccessTokenRequestUrl>
   <AccessTokenValidationUrl></AccessTokenValidationUrl>
